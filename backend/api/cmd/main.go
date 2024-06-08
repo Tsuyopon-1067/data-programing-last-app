@@ -1,7 +1,7 @@
 package main
 
 import (
-	"backend/router"
+	"backend/api/router"
 	"log"
 	"net/http"
 )

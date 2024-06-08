@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"backend/service"
+	"backend/api/service"
 	"log"
 	"net/http"
 

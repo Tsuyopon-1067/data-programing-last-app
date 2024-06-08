@@ -1,5 +1,5 @@
 # 使用するベースイメージ
-FROM golang:1.22.2 as builder
+FROM golang:1.22.3 as builder
 
 # 作業ディレクトリの設定
 WORKDIR /app
@@ -17,7 +17,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -v -o server ./api/cmd/main.go
 FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 
-WORKDIR /root/
+WORKDIR /root
 
 # ビルドした実行ファイルとスクリプトをコピー
 COPY --from=builder /app/server .
