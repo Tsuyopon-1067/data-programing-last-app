@@ -3,11 +3,10 @@ package router
 import (
 	"backend/api/handler"
 
-	"github.com/gorilla/mux"
+	"github.com/labstack/echo/v4"
 )
 
-func SetupRouter() *mux.Router {
-    r := mux.NewRouter()
-    r.HandleFunc("/ws", handler.WsHandler)
-    return r
+func SetupRoutes(e *echo.Echo) {
+	e.Static("/", "public")
+	e.GET("/ws", handler.WebSocketHandler)
 }
