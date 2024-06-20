@@ -12,6 +12,7 @@ func main() {
 	e.Use(middleware.Logger())
 
 	router.SetupRoutes(e)
+	e.Static("/", "public")
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
