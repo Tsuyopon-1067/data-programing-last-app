@@ -7,6 +7,5 @@ import (
 )
 
 func SetupRoutes(e *echo.Echo) {
-	e.Static("/", "public")
 	e.GET("/ws", handler.WebSocketHandler)
 }
