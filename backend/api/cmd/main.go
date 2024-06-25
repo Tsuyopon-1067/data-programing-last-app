@@ -2,11 +2,17 @@ package main
 
 import (
 	"backend/api/router"
-	"log"
-	"net/http"
+
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
-    r := router.SetupRouter()
-    log.Fatal(http.ListenAndServe(":8080", r))
+	e := echo.New()
+	e.Use(middleware.Logger())
+
+	router.SetupRoutes(e)
+	e.Static("/", "public")
+
+	e.Logger.Fatal(e.Start(":8080"))
 }

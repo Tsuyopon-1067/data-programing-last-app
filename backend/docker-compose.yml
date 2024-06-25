@@ -9,4 +9,5 @@ services:
       - GIN_MODE=release
     volumes:
       - .:/app
+      - ./public:/app/public
     restart: unless-stopped

@@ -22,6 +22,9 @@ WORKDIR /root
 # ビルドした実行ファイルとスクリプトをコピー
 COPY --from=builder /app/server .
 
+# public ディレクトリの内容をコピー
+COPY --from=builder /app/public ./public
+
 # ポートを公開
 EXPOSE 8080
 
