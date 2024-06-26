@@ -1,7 +1,13 @@
 import { TextField } from "@mui/material";
+import { useState } from "react";
 import styles from "./PostForm.module.css";
 
-export const PostForm = () => {
+type PostFormProps = {
+  handleSend: (name: string, cointent: string)=>void;
+}
+export const PostForm = ({handleSend}: PostFormProps) => {
+  const [name, ] = useState<string>("名無し");
+  const [content, setContent] = useState<string>("");
   return (
     <div className={styles.main}>
       <div className={styles.userIcon} />
@@ -12,9 +18,17 @@ export const PostForm = () => {
           multiline
           variant="standard"
           maxRows={4}
+          value={content}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setContent(event.target.value);
+          }}
         />
       </div>
-      <button className={styles.postButton}>ポストする</button>
+      <button
+        className={styles.postButton}
+        onClick={() => handleSend(name, content)}>
+        ポストする
+      </button>
     </div>
   );
 }

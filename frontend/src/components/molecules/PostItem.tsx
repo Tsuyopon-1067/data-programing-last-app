@@ -6,7 +6,8 @@ export const PostItem = ({name, content, date}: PostItemType) => {
     <div className={styles.main}>
       <div className={styles.userIcon} />
       <div className={styles.userNameArea}>
-        <span>hogehoge</span>
+        <span>{name}</span>
+        <span>{date}</span>
       </div>
       <div className={styles.contentArea}>
         <span>{content}</span>
