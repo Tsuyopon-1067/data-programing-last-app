@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ws.onmessage = function (evt) {
     const out = document.getElementById("output");
     const data = JSON.parse(evt.data);
-    out.innerHTML += `${data.username}: ${data.response} at ${data.timestamp}<br>`;
+    out.innerHTML += `${data.username}: ${data.message} at ${data.timestamp}<br>`;
   };
 
   const btn = document.querySelector(".btn");
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = document.getElementById("username").value;
     const messageText = document.getElementById("input").value;
     const message = {
-      username: username || "匿名", // ユーザ名が空の場合は「匿名」と表示
+      username: username || "風吹けば名無し",
       message: messageText,
       timestamp: new Date().toISOString(),
     };
