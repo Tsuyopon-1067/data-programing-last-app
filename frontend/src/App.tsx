@@ -1,12 +1,10 @@
 import "./App.css";
-import { PostForm } from "./components/molecules/PostForm";
+import { BulletinBoard } from "./components/organisms/BulletinBoard";
 
 function App() {
   return (
     <>
-      <div>
-        <PostForm />
-      </div>
+    <BulletinBoard />
     </>
   );
 }

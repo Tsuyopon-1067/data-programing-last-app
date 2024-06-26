@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
-import styles from "./BulletinBoard.module.css";
 import { PostForm } from "../molecules/PostForm";
+import { PostItem } from "../molecules/PostItem";
 
 export const BulletinBoard = () => {
   return (
@@ -8,9 +8,10 @@ export const BulletinBoard = () => {
       direction="column"
       justifyContent="flex-start"
       alignItems="center"
-      spacing={1}
+      spacing={0}
     >
       <PostForm />
+      <PostItem name={"namaeeee"} content={"aaaaaawawaa\nhgoiehgoehgoe"} date={"1234"} />
     </Stack>
   );
 };
