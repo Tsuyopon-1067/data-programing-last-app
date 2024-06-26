@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import styles from "./PostForm.module.css";
 
-export function PostForm() {
+export const PostForm = () => {
   return (
     <div className={styles.main}>
       <div className={styles.userIcon} />
