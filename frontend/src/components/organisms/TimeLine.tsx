@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import { PostForm } from "../molecules/PostForm";
 import { PostItem } from "../molecules/PostItem";
 
-export const BulletinBoard = () => {
+export const TimeLine = () => {
   return (
     <Stack
       direction="column"

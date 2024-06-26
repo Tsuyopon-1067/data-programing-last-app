@@ -1,10 +1,10 @@
 import "./App.css";
-import { BulletinBoard } from "./components/organisms/BulletinBoard";
+import { TimeLine } from "./components/organisms/TimeLine";
 
 function App() {
   return (
     <>
-    <BulletinBoard />
+    <TimeLine />
     </>
   );
 }
