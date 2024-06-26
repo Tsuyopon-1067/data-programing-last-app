@@ -9,6 +9,9 @@ import (
 	"golang.org/x/net/websocket"
 )
 
+// HandleWebSocketConnection handles a WebSocket connection
+var store = NewStore()
+
 func HandleWebSocketConnection(c echo.Context) error {
 	websocket.Handler(func(ws *websocket.Conn) {
 		defer ws.Close()
@@ -33,6 +36,9 @@ func HandleWebSocketConnection(c echo.Context) error {
 				c.Logger().Error(err)
 				return
 			}
+
+			// Save message to store
+			store.SaveMessage(msg.Username, msg)
 
 			// Create response message
 			response := model.Response{
