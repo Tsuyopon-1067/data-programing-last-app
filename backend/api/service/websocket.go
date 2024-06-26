@@ -2,7 +2,6 @@ package service
 
 import (
 	"backend/domain/model"
-	"fmt"
 	"time"
 
 	"github.com/labstack/echo/v4"
@@ -40,7 +39,7 @@ func HandleWebSocketConnection(c echo.Context) error {
 			// Create response message
 			response := model.Response{
 				Username:  msg.Username,
-				Message:  fmt.Sprintf("\"%s\" received!", msg.Message),
+				Message:  msg.Message,
 				Timestamp: time.Now().Format(time.RFC3339),
 			}
 
