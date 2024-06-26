@@ -1,13 +1,13 @@
 import { Stack } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { PostItemType } from "../../types/postItemType";
+import { ReceiveMessageType } from "../../types/receiveMessage";
 import { SendMessageType } from "../../types/sendMessage";
 import { PostForm } from "../molecules/PostForm";
 import { PostItem } from "../molecules/PostItem";
 
 export const TimeLine = () => {
-  const [, setMessages] = useState<PostItemType[]>([]);
   const ws = useRef<WebSocket | null>(null);
+  const [pastPostsData, setPastPostsData] = useState<ReceiveMessageType[]>([]);
 
   useEffect(() => {
     const loc = window.location;
@@ -23,7 +23,12 @@ export const TimeLine = () => {
 
     ws.current.onmessage = (evt) => {
       const data = JSON.parse(evt.data);
-      setMessages(prevMessages => [...prevMessages, data]);
+      const newData: ReceiveMessageType = {
+        username: data.username,
+        message: data.message,
+        timestamp: data.timestamp,
+      };
+      setPastPostsData((prev) => [...prev, newData]);
     };
 
     return () => {
@@ -44,6 +49,18 @@ export const TimeLine = () => {
     }
   };
 
+  const PastPosts = () => {
+    return (
+      pastPostsData.map((postData) => (
+        <PostItem
+          name={postData.username}
+          content={postData.message}
+          date={postData.timestamp}
+        />
+      ))
+    );
+  }
+
   return (
     <Stack
       direction="column"
@@ -52,7 +69,7 @@ export const TimeLine = () => {
       spacing={0}
     >
       <PostForm handleSend={handleSend} />
-      <PostItem name={"namaeeee"} content={"aaaaaawawaa\nhgoiehgoehgoe"} date={"1234"} />
+      <PastPosts />
     </Stack>
   );
 };
