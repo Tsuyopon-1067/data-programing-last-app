@@ -20,6 +20,9 @@ func NewStore() *ThreadSafeMemoryStore {
 	}
 }
 
+// Store is the global instance of ThreadSafeMemoryStore.
+var Store = NewStore()
+
 // SaveMessage saves a message to the store under the given username
 func (s *ThreadSafeMemoryStore) SaveMessage(username string, message model.Message) {
 	s.Lock()

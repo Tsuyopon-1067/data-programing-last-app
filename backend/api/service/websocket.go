@@ -8,15 +8,12 @@ import (
 	"golang.org/x/net/websocket"
 )
 
-// HandleWebSocketConnection handles a WebSocket connection
-var store = NewStore()
-
 func HandleWebSocketConnection(c echo.Context) error {
 	websocket.Handler(func(ws *websocket.Conn) {
 		defer ws.Close()
 
-		// Send all messages to client
-		for _, msg := range store.GetAllMessages() {
+		// 新しい接続のために、保存されたすべてのメッセージを送信
+		for _, msg := range Store.GetAllMessages() {
 			err := websocket.JSON.Send(ws, msg)
 			if err != nil {
 				c.Logger().Error(err)
@@ -34,7 +31,7 @@ func HandleWebSocketConnection(c echo.Context) error {
 			}
 
 			// Save message to store
-			store.SaveMessage(msg.Username, msg)
+			Store.SaveMessage(msg.Username, msg)
 
 			// Create response message
 			response := model.Response{

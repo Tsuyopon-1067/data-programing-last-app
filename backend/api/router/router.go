@@ -9,4 +9,6 @@ import (
 // SetupRoutes sets up the routes for the application
 func SetupRoutes(e *echo.Echo) {
 	e.GET("/ws", handler.WebSocketHandler)
+	e.GET("/username", handler.HandleUsernameSortedCSV)
+	e.GET("/date", handler.HandleDateSortedCSV)
 }
