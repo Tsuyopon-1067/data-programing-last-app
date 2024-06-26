@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import styles from "./PostForm.module.css";
 
@@ -24,15 +24,33 @@ export const PostForm = ({handleSend}: PostFormProps) => {
           }}
         />
       </div>
-      <button
+      <Button
         className={styles.postButton}
         disabled={content === ""}
         onClick={() => {
-          handleSend(name, content)
+          handleSend(name, content);
           setContent("");
-        }}>
+        }}
+        sx={{
+          gridRow: "3/4",
+          gridColumn: "3/4",
+          backgroundColor: "#1da1f2",
+          ":hover": { background: "#1A8CD8" },
+          color: "white",
+          "&.Mui-disabled": {
+            background: "#8ECDF8",
+            color: "#ffffff"
+          },
+          padding: "5px 12px",
+          border: "none",
+          borderRadius: "20px",
+          fontSize: "14px",
+          fontWeight: "bold",
+        }}
+      >
         ポストする
-      </button>
+      </Button>
     </div>
+
   );
 }
