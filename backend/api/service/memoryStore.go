@@ -33,3 +33,14 @@ func (s *ThreadSafeMemoryStore) GetMessages(username string) []model.Message {
 
 	return s.Messages[username]
 }
+
+// getAllMessages retrieves all messages from the store
+func (s *ThreadSafeMemoryStore) GetAllMessages() []model.Message {
+	s.RLock()
+	defer s.RUnlock()
+	var allMessages []model.Message
+	for _, messages := range s.Messages {
+		allMessages = append(allMessages, messages...)
+	}
+	return allMessages
+}
