@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   let loc = window.location;
-  let uri = "ws:";
-  if (loc.protocol === "https:") {
-    uri = "wss:";
-  }
+  let uri = loc.protocol === "https:" ? "wss:" : "ws:";
   uri += "//" + loc.host;
   uri += loc.pathname + "ws";
 
@@ -13,12 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   ws.onmessage = function (evt) {
-    let out = document.getElementById("output");
-    out.innerHTML += evt.data + "<br>";
+    const out = document.getElementById("output");
+    const data = JSON.parse(evt.data);
+    out.innerHTML += `${data.username}: ${data.message} at ${data.timestamp}<br>`;
   };
 
   const btn = document.querySelector(".btn");
   btn.addEventListener("click", () => {
-    ws.send(document.getElementById("input").value);
+    const username = document.getElementById("username").value;
+    const messageText = document.getElementById("input").value;
+    const message = {
+      username: username || "風吹けば名無し",
+      message: messageText,
+      timestamp: new Date().toISOString(),
+    };
+    ws.send(JSON.stringify(message));
   });
 });
