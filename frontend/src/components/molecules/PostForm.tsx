@@ -17,6 +17,7 @@ export const PostForm = ({handleSend}: PostFormProps) => {
           label="いまどうしてる？"
           multiline
           variant="standard"
+          fullWidth
           maxRows={4}
           value={content}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
