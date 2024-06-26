@@ -26,7 +26,11 @@ export const PostForm = ({handleSend}: PostFormProps) => {
       </div>
       <button
         className={styles.postButton}
-        onClick={() => handleSend(name, content)}>
+        disabled={content === ""}
+        onClick={() => {
+          handleSend(name, content)
+          setContent("");
+        }}>
         ポストする
       </button>
     </div>
