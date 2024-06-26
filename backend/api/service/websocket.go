@@ -17,7 +17,7 @@ func HandleWebSocketConnection(c echo.Context) error {
 		initialResponse := model.Response{
 			Username: "Server",
 			Message: "Hello, Client!",
-			TimeStamp: time.Now().Format(time.RFC3339),
+			Timestamp: time.Now().Format(time.RFC3339),
 		}
 		err := websocket.JSON.Send(ws, initialResponse)
 		if err != nil {
@@ -38,7 +38,7 @@ func HandleWebSocketConnection(c echo.Context) error {
 			response := model.Response{
 				Username:  msg.Username,
 				Message:  fmt.Sprintf("\"%s\" received!", msg.Message),
-				TimeStamp: time.Now().Format(time.RFC3339),
+				Timestamp: time.Now().Format(time.RFC3339),
 			}
 
 			// Send response message
