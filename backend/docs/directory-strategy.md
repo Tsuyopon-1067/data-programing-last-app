@@ -5,6 +5,8 @@
 │ ├── handler - API のエンドポイントハンドラーを実装するパッケージを格納するディレクトリ
 │ ├── router - API ルーティングを定義するパッケージを格納するディレクトリ
 │ └── service - アプリケーションのビジネスロジックを実装するパッケージを格納するディレクトリ
+├── domain
+│ └── model
 ├── Dockerfile
 ├── Dockerfile.dev
 ├── docker-compose.dev.yml
