@@ -2,7 +2,9 @@ package service
 
 import (
 	"backend/domain/model"
+	"fmt"
 	"sync"
+	"time"
 )
 
 // Thread-safe in-memory store
@@ -23,6 +25,19 @@ func (s *ThreadSafeMemoryStore) SaveMessage(username string, message model.Messa
 	s.Lock()
 	defer s.Unlock()
 
+	// Parse the existing timestamp in message to time.Time
+	timestamp, err := time.Parse(time.RFC3339, message.Timestamp)
+	if err != nil {
+		// Handle error if the timestamp is not in RFC3339 format
+		// This error handling is important to avoid storing incorrect data
+		fmt.Println("Error parsing timestamp:", err)
+		return
+	}
+
+	// Format the timestamp to "2006-01-02 15:04:05"
+	message.Timestamp = timestamp.Format("2006-01-02 15:04:05")
+
+	// Save the message with the formatted timestamp
 	s.Messages[username] = append(s.Messages[username], message)
 }
 

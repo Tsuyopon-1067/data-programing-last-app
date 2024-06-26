@@ -40,7 +40,7 @@ func HandleWebSocketConnection(c echo.Context) error {
 			response := model.Response{
 				Username:  msg.Username,
 				Message:  msg.Message,
-				Timestamp: time.Now().Format(time.RFC3339),
+				Timestamp: time.Now().Format("2006-01-02 15:04:05"),
 			}
 
 			// Send response message
