@@ -1,10 +1,10 @@
 import "./App.css";
-import { TimeLine } from "./components/organisms/TimeLine";
+import { Xframe } from "./components/Templates/Xframe";
 
 function App() {
   return (
     <>
-    <TimeLine />
+      <Xframe />
     </>
   );
 }
