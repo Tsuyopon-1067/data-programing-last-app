@@ -3,30 +3,18 @@
   height: 100%;
   display: grid;
   grid-column: 275px 1fr 350px;
-<<<<<<< Updated upstream
-=======
-  column-gap: 10px;
->>>>>>> Stashed changes
 }
 
 .nav {
   grid-column: 1 / 2;
-<<<<<<< Updated upstream
   margin-right: 10px;
-=======
->>>>>>> Stashed changes
 }
 
 .timeline {
   grid-column: 2 / 3;
 }
 
-<<<<<<< Updated upstream
 .links {
   grid-column: 3 / 4;
   margin-left: 40px;
-=======
-.others {
-  grid-column: 3 / 4;
->>>>>>> Stashed changes
 }
