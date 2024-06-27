@@ -3,7 +3,7 @@ import { NewsList } from "./NewsList";
 
 export const LinkList = () => {
   return (
-    <Stack direction={"column"} spacing={2}>
+    <Stack direction={"column"} spacing={2} maxWidth="350px">
       <NewsList />
       hogehoge
       hogehoge
