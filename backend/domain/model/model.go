@@ -19,3 +19,10 @@ type ReceivedMessage struct {
 	Username string `json:"username"`
 	Message  string `json:"message"`
 }
+
+// ニュース1件
+type News struct {
+	Title string
+	Url string
+	Comments int
+}
