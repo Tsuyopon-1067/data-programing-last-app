@@ -33,6 +33,7 @@ export const PostForm = ({userName, handleSend}: PostFormProps) => {
             setContent(event.target.value);
           }}
           sx={{
+            label: { color: isDarkMode ? "#71767B" : "#536471" },
             div: {
               textarea: {color: isDarkMode ? "#E7E9EA" : "#0F1419"}
             }
