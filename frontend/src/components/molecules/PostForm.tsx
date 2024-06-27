@@ -6,11 +6,14 @@ type PostFormProps = {
   handleSend: (cointent: string)=>void;
   userName: string;
 }
-export const PostForm = ({handleSend}: PostFormProps) => {
+export const PostForm = ({userName, handleSend}: PostFormProps) => {
   const [content, setContent] = useState<string>("");
   return (
     <div className={styles.main}>
       <div className={styles.userIcon} />
+      <div className={styles.userNameArea}>
+        <span>{userName}</span>
+      </div>
       <div className={styles.formContainer}>
         <TextField
           id="outlined-multiline-flexible"

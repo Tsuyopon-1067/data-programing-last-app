@@ -79,7 +79,7 @@ export const TimeLine = () => {
       alignItems="center"
       spacing={0}
     >
-      <PostForm handleSend={handleSend} />
+      <PostForm userName={userName} handleSend={handleSend} />
       <PastPosts />
     </Stack>
   );
