@@ -3,17 +3,18 @@
   height: 100%;
   display: grid;
   grid-column: 275px 1fr 350px;
-  column-gap: 10px;
 }
 
 .nav {
   grid-column: 1 / 2;
+  margin-right: 10px;
 }
 
 .timeline {
   grid-column: 2 / 3;
 }
 
-.others {
+.links {
   grid-column: 3 / 4;
+  margin-left: 40px;
 }

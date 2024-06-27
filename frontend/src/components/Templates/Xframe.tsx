@@ -1,5 +1,5 @@
+import { LinkList } from "../organisms/LinkList";
 import { NaviMenu } from "../organisms/NavMenu";
-import { NewsList } from "../organisms/NewsList";
 import { TimeLine } from "../organisms/TimeLine";
 import styles from "./Xframe.module.css";
 
@@ -12,8 +12,8 @@ export const Xframe = () => {
       <div className={styles.timeline}>
         <TimeLine />
       </div>
-      <div className={styles.others}>
-        <NewsList />
+      <div className={styles.links}>
+        <LinkList />
       </div>
     </div>
   );
