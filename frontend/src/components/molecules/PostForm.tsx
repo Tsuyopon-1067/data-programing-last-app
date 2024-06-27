@@ -1,5 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { userNameToColor } from "../../lib/userNameToColor";
 import styles from "./PostForm.module.css";
 
 type PostFormProps = {
@@ -10,7 +11,10 @@ export const PostForm = ({userName, handleSend}: PostFormProps) => {
   const [content, setContent] = useState<string>("");
   return (
     <div className={styles.main}>
-      <div className={styles.userIcon} />
+      <div
+        className={styles.userIcon}
+        style={{ backgroundColor: userNameToColor(userName) }}
+      />
       <div className={styles.userNameArea}>
         <span>{userName}</span>
       </div>
