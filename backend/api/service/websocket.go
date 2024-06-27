@@ -2,6 +2,7 @@ package service
 
 import (
 	"backend/domain/model"
+	"fmt"
 	"time"
 
 	"github.com/labstack/echo/v4"
@@ -22,22 +23,28 @@ func HandleWebSocketConnection(c echo.Context) error {
 		}
 
 		for {
-			var msg model.Message
-			err := websocket.JSON.Receive(ws, &msg)
+			var clientMsg model.ReceivedMessage
+			err := websocket.JSON.Receive(ws, &clientMsg)
 			if err != nil {
 				c.Logger().Error(err)
 				break
 			}
 
 			// 現在の時刻をタイムスタンプとして設定
-			msg.Timestamp = time.Now().Format("2006-01-02 15:04:05")
+			timestamp := time.Now().Format("2006-01-02 15:04:05")
+			fmt.Println("timestamp", timestamp)
+			msg := model.Message{
+				Username: clientMsg.Username,
+				Message: clientMsg.Message,
+				Timestamp: timestamp,
+			}
 
 			// Save message to store
 			Store.SaveMessage(msg.Username, msg)
 			response := model.Message{
 				Username:  msg.Username,
 				Message:   msg.Message,
-				Timestamp: time.Now().Format("2006-01-02 15:04:05"),
+				Timestamp: msg.Timestamp,
 			}
 
 			// 受け取ったメッセージをブロードキャスト

@@ -13,3 +13,9 @@ type Response struct {
 	Message  string `json:"message"`
 	Timestamp string `json:"timestamp"`
 }
+
+// クライアントから受け取るメッセージ
+type ReceivedMessage struct {
+	Username string `json:"username"`
+	Message  string `json:"message"`
+}
