@@ -1,11 +1,25 @@
+.topArea {
+  padding: 12px;
+  transition: background-color 0.3s ease;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  text-align: left;
+  text-align: left;
+}
+
+.topText {
+  font-size: 24px;
+  color: black;
+  font-weight: bold;
+}
+
 .a {
   display: block;
   margin: 0;
 }
 
 .bottomArea {
-  height: 20px;
-  padding: 16px;
+  padding: 12px;
   transition: background-color 0.3s ease;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
