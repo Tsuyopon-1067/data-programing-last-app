@@ -12,4 +12,5 @@ func SetupRoutes(e *echo.Echo) {
 	e.GET("/csv/username", handler.HandleUsernameSortedCSV)
 	e.GET("/csv/date", handler.HandleDateSortedCSV)
 	e.GET("/fetch/username", handler.HandleFetchUsername)
+	e.GET("/fetch/news", handler.HandleFetchNews)
 }
