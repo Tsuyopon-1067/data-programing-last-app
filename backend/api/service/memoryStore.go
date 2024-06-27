@@ -29,7 +29,8 @@ func (s *ThreadSafeMemoryStore) SaveMessage(username string, message model.Messa
 	defer s.Unlock()
 
 	// Parse the existing timestamp in message to time.Time
-	timestamp, err := time.Parse(time.RFC3339, message.Timestamp)
+	const layout = "2006-01-02 15:04:05"
+	timestamp, err := time.Parse(layout, message.Timestamp)
 	if err != nil {
 		// Handle error if the timestamp is not in RFC3339 format
 		// This error handling is important to avoid storing incorrect data
