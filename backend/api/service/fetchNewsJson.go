@@ -19,7 +19,8 @@ func FetchNewsJson() []model.News {
 	}
 
 	list := []model.News{}
-	for _, lastUrl := range urls {
+	categories := []string{"国内", "国際", "経済", "エンタメ"}
+	for i, lastUrl := range urls {
 		url := baseUrl + lastUrl
 		title, firstUrl := getFirstUrl(url)
 		comments := getComments(firstUrl)
@@ -29,7 +30,7 @@ func FetchNewsJson() []model.News {
 		if err != nil {
 			fmt.Println("Error converting comments to int:", err)
 		}
-		newsItem := model.News{title, firstUrl, commentsInt}
+		newsItem := model.News{title, categories[i], firstUrl, commentsInt}
 		list = append(list, newsItem)
 	}
 	return list

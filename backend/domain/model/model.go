@@ -22,7 +22,8 @@ type ReceivedMessage struct {
 
 // ニュース1件
 type News struct {
-	Title string
-	Url string
-	Comments int
+	Title string `json:"title"`
+	Category string `json:"category"`
+	Url string `json:"url"`
+	Comments int `json:"comments"`
 }
