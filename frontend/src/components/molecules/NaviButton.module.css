@@ -1,0 +1,23 @@
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-gap: 20px;
+  justify-content: center;
+  height: 32px;
+  margin: 0 20px;
+}
+
+.iconArea {
+  grid-column: 1 / 2;
+}
+
+.iconMiddle {
+  position: relative;
+  top: 4px;;
+}
+
+.nameArea {
+  grid-column: 2 / 3;
+  align-items: center;
+  justify-content: center;
+}
