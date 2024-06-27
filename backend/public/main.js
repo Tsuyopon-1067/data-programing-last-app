@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = {
       username: username || "風吹けば名無し",
       message: messageText,
-      timestamp: new Date().toISOString(),
+      timestamp: "",
     };
     ws.send(JSON.stringify(message));
   });
