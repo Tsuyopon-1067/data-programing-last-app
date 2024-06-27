@@ -1,0 +1,22 @@
+.a {
+  display: block;
+  margin: 0;
+}
+
+.bottomArea {
+  height: 20px;
+  padding: 16px;
+  transition: background-color 0.3s ease;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  text-align: left;
+}
+
+.bottomArea:hover {
+  cursor: pointer;
+  background-color: #F7F7F7;
+}
+
+.bottomText {
+  color: #1D9BF0;
+}

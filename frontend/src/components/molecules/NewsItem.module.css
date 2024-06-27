@@ -1,6 +1,10 @@
+.a {
+  margin: 0;
+}
+
 .main {
-  height: 80px;
-  padding: 16px;
+  height: 76px;
+  padding: 12px;
   transition: background-color 0.3s ease;
 }
 
@@ -17,7 +21,7 @@
 }
 
 .title {
-  font-size: 20px;
+  font-size: 16px;
   color: black;
   font-weight: bold;
   margin: 0;
