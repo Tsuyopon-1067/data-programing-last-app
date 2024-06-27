@@ -3,10 +3,10 @@ import { useState } from "react";
 import styles from "./PostForm.module.css";
 
 type PostFormProps = {
-  handleSend: (name: string, cointent: string)=>void;
+  handleSend: (cointent: string)=>void;
+  userName: string;
 }
 export const PostForm = ({handleSend}: PostFormProps) => {
-  const [name, ] = useState<string>("名無し");
   const [content, setContent] = useState<string>("");
   return (
     <div className={styles.main}>
@@ -29,7 +29,7 @@ export const PostForm = ({handleSend}: PostFormProps) => {
         className={styles.postButton}
         disabled={content === ""}
         onClick={() => {
-          handleSend(name, content);
+          handleSend(content);
           setContent("");
         }}
         sx={{

@@ -7,9 +7,21 @@ import { PostItem } from "../molecules/PostItem";
 
 export const TimeLine = () => {
   const ws = useRef<WebSocket | null>(null);
+  const [userName, setUserName] = useState<string>("");
   const [pastPostsData, setPastPostsData] = useState<ReceiveMessageType[]>([]);
 
   useEffect(() => {
+    fetch('http://localhost:8080/fetch/username')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setUserName(data.username);
+      });
+
     const loc = window.location;
     let uri = loc.protocol === "https:" ? "wss:" : "ws:";
     uri += "//" + loc.host;
@@ -38,10 +50,10 @@ export const TimeLine = () => {
     };
   }, []);
 
-  const handleSend = (name: string, content: string) => {
+  const handleSend = (content: string) => {
     if (ws.current) {
       const message: SendMessageType = {
-        username: name || "風吹けば名無し",
+        username: userName,
         message: content,
       };
       ws.current.send(JSON.stringify(message));
