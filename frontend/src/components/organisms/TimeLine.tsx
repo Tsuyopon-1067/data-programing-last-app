@@ -43,7 +43,6 @@ export const TimeLine = () => {
       const message: SendMessageType = {
         username: name || "風吹けば名無し",
         message: content,
-        timestamp: new Date().toISOString(),
       };
       ws.current.send(JSON.stringify(message));
     }
