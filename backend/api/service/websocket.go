@@ -31,7 +31,7 @@ func HandleWebSocketConnection(c echo.Context) error {
 
 			// 現在の時刻をタイムスタンプとして設定
 			msg.Timestamp = time.Now().Format("2006-01-02 15:04:05")
-			
+
 			// Save message to store
 			Store.SaveMessage(msg.Username, msg)
 			response := model.Message{
