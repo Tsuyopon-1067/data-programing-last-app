@@ -1,6 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { userNameToColor } from "../../lib/userNameToColor";
+import { useDarkTheme } from "../templetes/DarkThemeProvider";
 import styles from "./PostForm.module.css";
 
 type PostFormProps = {
@@ -9,6 +10,7 @@ type PostFormProps = {
 }
 export const PostForm = ({userName, handleSend}: PostFormProps) => {
   const [content, setContent] = useState<string>("");
+  const {isDarkMode} = useDarkTheme();
   return (
     <div className={styles.main}>
       <div
@@ -29,6 +31,11 @@ export const PostForm = ({userName, handleSend}: PostFormProps) => {
           value={content}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setContent(event.target.value);
+          }}
+          sx={{
+            div: {
+              textarea: {color: isDarkMode ? "#E7E9EA" : "#0F1419"}
+            }
           }}
         />
       </div>
