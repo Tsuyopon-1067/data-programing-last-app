@@ -1,0 +1,19 @@
+.main {
+  max-width: 1375px;
+  height: 100%;
+  display: grid;
+  grid-column: 275px 1fr 350px;
+  column-gap: 10px;
+}
+
+.nav {
+  grid-column: 1 / 2;
+}
+
+.timeline {
+  grid-column: 2 / 3;
+}
+
+.others {
+  grid-column: 3 / 4;
+}
