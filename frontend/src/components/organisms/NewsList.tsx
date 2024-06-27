@@ -1,4 +1,5 @@
 import { Stack } from "@mui/material";
+<<<<<<< Updated upstream
 import { useEffect, useState } from "react";
 import { News } from "../../types/news";
 import NewsItem from "../molecules/NewsItem";
@@ -55,6 +56,15 @@ export const NewsList = () => {
         <span className={styles.bottomText}>Yahooニュースより</span>
       </div>
       </a>
+=======
+
+export const NewsList = () => {
+  return (
+    <Stack direction={"column"} spacing={2}>
+      hogehoge
+      hogehoge
+      hogehoge
+>>>>>>> Stashed changes
     </Stack>
   );
 }
