@@ -26,7 +26,7 @@ export const NewsList = () => {
           title={news.title}
           category={news.category}
           url={news.url}
-          comment={news.comment}
+          comment={news.comments}
         />
       );
     });

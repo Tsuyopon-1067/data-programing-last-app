@@ -1,6 +1,6 @@
 export type News = {
   title: string;
   url: string;
-  comment: number;
+  comments: number;
   category: string;
 };
