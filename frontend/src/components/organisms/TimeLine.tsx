@@ -38,14 +38,14 @@ export const TimeLine = () => {
     };
   }, []);
 
-  const handleSend = (name: string, content: string) => {
+  const handleSend = (username: string, message: string) => {
     if (ws.current) {
-      const message: SendMessageType = {
-        username: name || "風吹けば名無し",
-        message: content,
+      const messageItem: SendMessageType = {
+        username: username || "風吹けば名無し",
+        message: message,
         timestamp: new Date().toISOString(),
       };
-      ws.current.send(JSON.stringify(message));
+      ws.current.send(JSON.stringify(messageItem));
     }
   };
 
@@ -53,9 +53,9 @@ export const TimeLine = () => {
     return (
       pastPostsData.map((postData) => (
         <PostItem
-          name={postData.username}
-          content={postData.message}
-          date={postData.timestamp}
+          username={postData.username}
+          message={postData.message}
+          timestamp={postData.timestamp}
         />
       ))
     );

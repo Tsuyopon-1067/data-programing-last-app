@@ -1,5 +1,5 @@
 export interface PostItemType {
-  name: string;
-  content: string;
-  date: string;
+  username: string;
+  message: string;
+  timestamp: string;
 }

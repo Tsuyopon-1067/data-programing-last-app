@@ -3,11 +3,11 @@ import { useState } from "react";
 import styles from "./PostForm.module.css";
 
 type PostFormProps = {
-  handleSend: (name: string, cointent: string)=>void;
+  handleSend: (name: string, cointent: string) => void;
 }
-export const PostForm = ({handleSend}: PostFormProps) => {
-  const [name, ] = useState<string>("名無し");
-  const [content, setContent] = useState<string>("");
+export const PostForm = ({ handleSend }: PostFormProps) => {
+  const [name,] = useState<string>("名無し");
+  const [message, setMessage] = useState<string>("");
   return (
     <div className={styles.main}>
       <div className={styles.userIcon} />
@@ -19,18 +19,18 @@ export const PostForm = ({handleSend}: PostFormProps) => {
           variant="standard"
           fullWidth
           maxRows={4}
-          value={content}
+          value={message}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setContent(event.target.value);
+            setMessage(event.target.value);
           }}
         />
       </div>
       <Button
         className={styles.postButton}
-        disabled={content === ""}
+        disabled={message === ""}
         onClick={() => {
-          handleSend(name, content);
-          setContent("");
+          handleSend(name, message);
+          setMessage("");
         }}
         sx={{
           gridRow: "3/4",
