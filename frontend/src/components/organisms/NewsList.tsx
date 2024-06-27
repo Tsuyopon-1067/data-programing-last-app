@@ -1,7 +1,37 @@
 import { Stack } from "@mui/material";
+import { useEffect, useState } from "react";
+import { News } from "../../types/news";
 import NewsItem from "../molecules/NewsItem";
 
 export const NewsList = () => {
+  const[newsList, setNewsList] = useState<News[]>([]);
+  useEffect(() => {
+    fetch('http://localhost:8080/fetch/news')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setNewsList(data);
+      });
+  }, []);
+
+  const NewsItems = () => {
+    return newsList.map((news, index) => {
+      return (
+        <NewsItem
+          key={index}
+          title={news.title}
+          category={news.category}
+          url={news.url}
+          comment={news.comment}
+        />
+      );
+    });
+  }
+
   return (
     <Stack
       direction={"column"}
@@ -11,9 +41,7 @@ export const NewsList = () => {
         borderRadius: "16px",
       }}
     >
-      <NewsItem title="HogeHoge" category="Fuga" url="hogehoge" comment={1000} />
-      <NewsItem title="HogeHoge" category="Fuga" url="hogehoge" comment={1000} />
-      <NewsItem title="HogeHoge" category="Fuga" url="hogehoge" comment={1000} />
+      <NewsItems />
     </Stack>
   );
 }
