@@ -1,16 +1,33 @@
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import { userNameToColor } from "../../lib/userNameToColor";
 import { useDarkTheme } from "../templetes/DarkThemeProvider";
 import styles from "./PostForm.module.css";
+import React from "react";
 
 type PostFormProps = {
-  handleSend: (cointent: string)=>void;
+  handleSend: (cointent: string) => void;
   userName: string;
-}
-export const PostForm = ({userName, handleSend}: PostFormProps) => {
+};
+
+export const PostForm = ({ userName, handleSend }: PostFormProps) => {
   const [content, setContent] = useState<string>("");
-  const {isDarkMode} = useDarkTheme();
+  const { isDarkMode } = useDarkTheme();
+  const sendPost = (content: string) => {
+    if (content === "") {
+      return;
+    }
+    handleSend(content);
+    setContent("");
+  };
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>): void => {
+    // ctr + Enter or command + Enter
+    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+      event.preventDefault();
+      sendPost(content);
+    }
+  };
+
   return (
     <div className={styles.main}>
       <div
@@ -32,11 +49,12 @@ export const PostForm = ({userName, handleSend}: PostFormProps) => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setContent(event.target.value);
           }}
+          onKeyDown={handleKeyDown}
           sx={{
             label: { color: isDarkMode ? "#71767B" : "#536471" },
             div: {
-              textarea: {color: isDarkMode ? "#E7E9EA" : "#0F1419"}
-            }
+              textarea: { color: isDarkMode ? "#E7E9EA" : "#0F1419" },
+            },
           }}
         />
       </div>
@@ -44,8 +62,7 @@ export const PostForm = ({userName, handleSend}: PostFormProps) => {
         className={styles.postButton}
         disabled={content === ""}
         onClick={() => {
-          handleSend(content);
-          setContent("");
+          sendPost(content);
         }}
         sx={{
           gridRow: "3/4",
@@ -55,7 +72,7 @@ export const PostForm = ({userName, handleSend}: PostFormProps) => {
           color: "white",
           "&.Mui-disabled": {
             background: "#8ECDF8",
-            color: "#ffffff"
+            color: "#ffffff",
           },
           padding: "5px 12px",
           border: "none",
@@ -67,6 +84,5 @@ export const PostForm = ({userName, handleSend}: PostFormProps) => {
         ポストする
       </Button>
     </div>
-
   );
-}
+};
