@@ -5,9 +5,9 @@ import NewsItem from "../molecules/NewsItem";
 import styles from "./NewsList.module.css";
 
 export const NewsList = () => {
-  const[newsList, setNewsList] = useState<News[]>([]);
+  const [newsList, setNewsList] = useState<News[]>([]);
   useEffect(() => {
-    fetch('http://localhost:8080/fetch/news')
+    fetch('./fetch/news')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -48,9 +48,9 @@ export const NewsList = () => {
       </div>
       <NewsItems />
       <a className={styles.a} href="https://news.yahoo.co.jp/">
-      <div className={styles.bottomArea}>
-        <span className={styles.bottomText}>Yahooニュースより</span>
-      </div>
+        <div className={styles.bottomArea}>
+          <span className={styles.bottomText}>Yahooニュースより</span>
+        </div>
       </a>
     </Stack>
   );

@@ -11,7 +11,7 @@ export const TimeLine = () => {
   const [pastPostsData, setPastPostsData] = useState<ReceiveMessageType[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/fetch/username')
+    fetch('./fetch/username')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
