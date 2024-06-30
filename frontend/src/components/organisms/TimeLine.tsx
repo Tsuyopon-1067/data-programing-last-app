@@ -62,7 +62,7 @@ export const TimeLine = () => {
 
   const PastPosts = () => {
     return (
-      pastPostsData.reverse().map((postData) => (
+      pastPostsData.slice().reverse().map((postData) => (
         <PostItem
           name={postData.username}
           content={postData.message}
