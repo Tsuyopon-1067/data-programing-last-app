@@ -1,10 +1,19 @@
 import "./App.css";
-import { Xframe } from "./components/Templates/Xframe";
+import { TimeLineLinkList } from "./components/pages/TimelineLinkList";
+import { Xframe } from "./components/templetes/Xframe";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Xframe />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Xframe />}>
+            <Route path="/" element={<TimeLineLinkList />} />
+          </Route>
+        </Routes>
+        <Xframe />
+      </BrowserRouter>
     </>
   );
 }
