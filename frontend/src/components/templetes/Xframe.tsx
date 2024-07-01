@@ -1,5 +1,5 @@
+import { Outlet } from "react-router-dom";
 import { NaviMenu } from "../organisms/NavMenu";
-import { TimeLineLinkList } from "../pages/TimelineLinkList";
 import styles from "./Xframe.module.css";
 
 export const Xframe = () => {
@@ -9,7 +9,7 @@ export const Xframe = () => {
         <NaviMenu />
       </div>
       <div className={styles.contentArea}>
-        <TimeLineLinkList />
+        <Outlet />
       </div>
     </div>
   );
