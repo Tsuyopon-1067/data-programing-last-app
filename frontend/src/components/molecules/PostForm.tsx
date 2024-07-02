@@ -1,4 +1,4 @@
-import { Button, CircularProgress, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { KeyboardEvent, useState } from "react";
 import { userNameToColor } from "../../lib/userNameToColor";
 import { useDarkTheme } from "../templetes/DarkThemeProvider";
