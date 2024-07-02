@@ -24,7 +24,6 @@
 .button:disabled {
     background-color: #8fcdf7;
     cursor:not-allowed;
-    box-shadow:3px 3px 3px #aaa;
 }
 
 .button:disabled:hover {

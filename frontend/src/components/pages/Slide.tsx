@@ -11,7 +11,9 @@ export const Slide = () => {
         <SlideImages page={page} />
       </div>
       <div className={styles.buttonArea}>
-        <Pager page={page} max={max} setPage={setPage} />
+        <div>
+          <Pager page={page} max={max} setPage={setPage} />
+        </div>
       </div>
     </div>
   );
