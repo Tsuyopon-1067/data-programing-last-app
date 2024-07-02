@@ -1,0 +1,15 @@
+.main {
+  display: grid;
+  grid-template-rows: 1fr 40px;
+}
+
+.slideArea {
+  grid-row: 1 / 2;
+
+}
+
+.buttonArea {
+  grid-row: 2 / 3;
+  padding: 8px;
+  background-color: #000;
+}
