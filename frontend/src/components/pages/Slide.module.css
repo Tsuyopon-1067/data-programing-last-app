@@ -1,0 +1,13 @@
+.main {
+  display: grid;
+  grid-template-rows: 1fr 24px;
+}
+
+.slideArea {
+  grid-row: 1 / 2;
+
+}
+
+.buttonArea {
+  grid-row: 2 / 3;
+}
