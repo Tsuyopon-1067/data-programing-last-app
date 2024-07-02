@@ -1,7 +1,14 @@
 import { Search } from "@mui/icons-material";
 import { InputAdornment, TextField } from "@mui/material";
+import { useState } from "react";
 
 export const SearchBar = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const handleKeyDown = (event: KeyboardEvent, searchQuery: string): void => {
+    if (event.key === 'Enter') {
+      window.location.href = `https://www.google.com/search?q=${searchQuery}`;
+    }
+  };
   return (
     <TextField
       id="input-with-icon-textfield"
@@ -47,6 +54,9 @@ export const SearchBar = () => {
           },
         },
       }}
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      onKeyDown={handleKeyDown}
     />
   );
 }
