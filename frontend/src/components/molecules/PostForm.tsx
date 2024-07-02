@@ -1,9 +1,10 @@
-import { Button, TextField } from "@mui/material";
+import { Button, CircularProgress, TextField } from "@mui/material";
 import { KeyboardEvent, useState } from "react";
 import { userNameToColor } from "../../lib/userNameToColor";
 import { useDarkTheme } from "../templetes/DarkThemeProvider";
 import styles from "./PostForm.module.css";
 import React from "react";
+import { CharacterCounter } from "../atom/CharacterCounter";
 
 type PostFormProps = {
   handleSend: (cointent: string) => void;
@@ -34,8 +35,13 @@ export const PostForm = ({ userName, handleSend }: PostFormProps) => {
         className={styles.userIcon}
         style={{ backgroundColor: userNameToColor(userName) }}
       />
-      <div className={styles.userNameArea}>
-        <span>{userName}</span>
+      <div className={styles.userNameCounterArea}>
+        <div className={styles.userNameArea}>
+          <span>{userName}</span>
+        </div>
+        <div className={styles.counterArea}>
+          {content.length > 0 && <CharacterCounter value={content.length} />}
+        </div>
       </div>
       <div className={styles.formContainer}>
         <TextField
@@ -83,6 +89,6 @@ export const PostForm = ({ userName, handleSend }: PostFormProps) => {
       >
         ポストする
       </Button>
-    </div>
+    </div >
   );
 };
