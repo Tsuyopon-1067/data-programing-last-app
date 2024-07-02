@@ -15,11 +15,11 @@ export const NaviMenu = () => {
         borderColor: "#EFF3F4",
       }}
     >
-      <NaviButton name="ホーム"><Home sx={{ fontSize: "28px" }} /></NaviButton>
-      <NaviButton name="発表資料"><ArticleIcon sx={{ fontSize: "28px" }} /></NaviButton>
-      <NaviButton name="アーキテクチャ"><Home sx={{ fontSize: "28px" }} /></NaviButton>
-      <NaviButton name="技術スタック"><Home sx={{ fontSize: "28px" }} /></NaviButton>
-      <NaviButton name="QRコード"><Home sx={{ fontSize: "28px" }} /></NaviButton>
+      <NaviButton name="ホーム" url="/"><Home sx={{ fontSize: "28px" }} /></NaviButton>
+      <NaviButton name="発表資料" url="/slide"><ArticleIcon sx={{ fontSize: "28px" }} /></NaviButton>
+      <NaviButton name="アーキテクチャ" url="/architecture"><Home sx={{ fontSize: "28px" }} /></NaviButton>
+      <NaviButton name="技術スタック" url="/techstack"><Home sx={{ fontSize: "28px" }} /></NaviButton>
+      <NaviButton name="QRコード" url="/qr"><Home sx={{ fontSize: "28px" }} /></NaviButton>
     </Stack>
   );
 }

@@ -1,13 +1,16 @@
 import { Button } from "@mui/material";
 import { ReactNode } from "react";
 import styles from "./NaviButton.module.css";
+import { useNavigate } from "react-router-dom";
 
-export const NaviButton: React.FC<{ children: ReactNode, name: string }> = ({ children, name }) => {
+export const NaviButton: React.FC<{ children: ReactNode, name: string, url: string }> = ({ children, name, url }) => {
+  const navigate = useNavigate();
   return (
     <Button
+      onClick={() => navigate(url)}
       variant="text"
       sx={{
-        color : "black",
+        color: "black",
         fontSize: "22px",
         borderRadius: "16px",
       }}
