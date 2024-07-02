@@ -2,7 +2,7 @@
   max-width: 1375px;
   height: 100%;
   display: grid;
-  grid-column: 275px 1fr 350px;
+  grid-column: 275px 1fr;
 }
 
 .nav {
@@ -10,11 +10,6 @@
   margin-right: 10px;
 }
 
-.timeline {
+.contentArea {
   grid-column: 2 / 3;
-}
-
-.links {
-  grid-column: 3 / 4;
-  margin-left: 40px;
 }
