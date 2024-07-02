@@ -1,3 +1,20 @@
+# --- フロントエンドのビルドステージ ---
+FROM node:20 as frontend
+
+# 作業ディレクトリの設定
+WORKDIR /app
+
+# パッケージファイルをコピー
+COPY frontend/package*.json ./
+
+RUN npm install
+
+COPY ./frontend .
+
+RUN npm run build
+
+# --- バックエンドのビルドステージ ---
+
 # 使用するベースイメージ
 FROM golang:1.22.3 as builder
 
@@ -5,7 +22,10 @@ FROM golang:1.22.3 as builder
 WORKDIR /app
 
 # ソースコードをコピー
-COPY . .
+COPY ./backend .
+
+# フロントエンドのビルド結果をコピー
+COPY --from=frontend /app/dist ./public
 
 # 依存関係をインストール
 RUN go mod download
