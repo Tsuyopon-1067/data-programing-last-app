@@ -8,6 +8,7 @@
 .nav {
   grid-column: 1 / 2;
   margin-right: 10px;
+  max-width: 275px;
 }
 
 .contentArea {

@@ -5,6 +5,7 @@
   justify-content: center;
   height: 32px;
   margin: 0 20px;
+  width: 100%;
 }
 
 .iconArea {
@@ -18,6 +19,6 @@
 
 .nameArea {
   grid-column: 2 / 3;
-  align-items: center;
+  text-align: left;
   justify-content: center;
 }
