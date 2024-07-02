@@ -8,7 +8,6 @@ export const NaviMenu = () => {
     <Stack
       direction={"column"}
       spacing={2}
-      marginRight={3}
       height={"100vh"}
       alignItems="left"
       sx={{
@@ -18,9 +17,9 @@ export const NaviMenu = () => {
     >
       <NaviButton name="ホーム"><Home sx={{ fontSize: "28px" }} /></NaviButton>
       <NaviButton name="発表資料"><ArticleIcon sx={{ fontSize: "28px" }} /></NaviButton>
-      <NaviButton name="ホーム"><Home sx={{ fontSize: "28px" }} /></NaviButton>
-      <NaviButton name="ホーム"><Home sx={{ fontSize: "28px" }} /></NaviButton>
-      <NaviButton name="ホーム"><Home sx={{ fontSize: "28px" }} /></NaviButton>
+      <NaviButton name="アーキテクチャ"><Home sx={{ fontSize: "28px" }} /></NaviButton>
+      <NaviButton name="技術スタック"><Home sx={{ fontSize: "28px" }} /></NaviButton>
+      <NaviButton name="QRコード"><Home sx={{ fontSize: "28px" }} /></NaviButton>
     </Stack>
   );
 }
