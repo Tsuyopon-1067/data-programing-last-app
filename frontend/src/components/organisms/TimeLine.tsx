@@ -99,6 +99,7 @@ export const TimeLine = () => {
       justifyContent="flex-start"
       alignItems="center"
       spacing={0}
+      width={"100%"}
     >
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={displayedPost} onChange={handleChange} variant="fullWidth" >
