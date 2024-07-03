@@ -1,3 +1,4 @@
+import { Architecture } from "@mui/icons-material";
 import "./App.css";
 import { Slide } from "./components/pages/Slide";
 import { TimeLineLinkList } from "./components/pages/TimelineLinkList";
@@ -5,7 +6,6 @@ import { Xframe } from "./components/templetes/Xframe";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { TechStack } from "./components/pages/TechStack";
 import { Qr } from "./components/pages/Qr";
-import { Architecture } from "./components/pages/Architecture";
 
 function App() {
   return (
@@ -20,7 +20,6 @@ function App() {
             <Route path="/qr" element={<Qr />} />
           </Route>
         </Routes>
-        <Xframe />
       </BrowserRouter>
     </>
   );
