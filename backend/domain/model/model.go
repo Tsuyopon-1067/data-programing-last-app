@@ -27,3 +27,14 @@ type News struct {
 	Url string `json:"url"`
 	Comments int `json:"comments"`
 }
+
+// Pythonコードのリクエスト
+type PythonCodeRequest struct {
+	Code string `json:"code"`
+}
+
+// Pythonコードのレスポンス
+type PythonCodeResponse struct {
+	Output string `json:"output"`
+	Error  string `json:"error"`
+}
