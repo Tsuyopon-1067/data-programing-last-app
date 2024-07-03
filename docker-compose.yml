@@ -7,7 +7,18 @@ services:
       - "8080:8080"
     environment:
       - GIN_MODE=release
+      - PYTHONUNBUFFERED=1
     volumes:
       - .:/app
       - ./public:/app/public
     restart: unless-stopped
+    depends_on:
+      - python-server
+  
+  python-server:
+    build:
+      context: python-server
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+

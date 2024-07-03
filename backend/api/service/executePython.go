@@ -1,9 +1,11 @@
 package service
 
 import (
+	"backend/domain/model"
 	"bytes"
+	"encoding/json"
 	"fmt"
-	"os/exec"
+	"net/http"
 )
 
 func ExecutePython(code string) (string, error) {
@@ -11,15 +13,26 @@ func ExecutePython(code string) (string, error) {
 	if ifForbidden != nil {
 		return "", ifForbidden
 	}
-	cmd := exec.Command("python3", "-c", code)
-	var out bytes.Buffer
-	var stderr bytes.Buffer
-	cmd.Stdout = &out
-	cmd.Stderr = &stderr
-	err := cmd.Run()
-	fmt.Println(err)
+	pythonServerURL := "http://python-server:8081/execute"
+	requestBody, err := json.Marshal(model.PythonCodeRequest{Code: code})
 	if err != nil {
-		return "", fmt.Errorf(stderr.String())
+		return "", fmt.Errorf("failed to marshal request: %v", err)
 	}
-	return out.String(), nil
+
+	resp, err := http.Post(pythonServerURL, "application/json", bytes.NewBuffer(requestBody))
+	if err != nil {
+		return "", fmt.Errorf("failed to send request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	var response model.PythonCodeResponse
+	if err := json.NewDecoder(resp.Body).Decode(&response); err != nil {
+		return "", fmt.Errorf("failed to decode response: %v", err)
+	}
+
+	if response.Error != "" {
+		return "", fmt.Errorf(response.Error)
+	}
+
+	return response.Output, nil
 }
