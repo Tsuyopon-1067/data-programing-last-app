@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const handleKeyDown = (event: KeyboardEvent, searchQuery: string): void => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
       window.location.href = `https://www.google.com/search?q=${searchQuery}`;
     }
