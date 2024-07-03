@@ -34,12 +34,8 @@
     RUN CGO_ENABLED=0 GOOS=linux go build -v -o server ./api/cmd/main.go
     
     # 実行イメージ
-    FROM python:3.9-slim
-    
-    # 必要なパッケージをインストール
-    RUN apt-get update && apt-get install -y \
-        build-essential \
-        && rm -rf /var/lib/apt/lists/*
+    FROM alpine:latest
+    RUN apk --no-cache add ca-certificates
     
     WORKDIR /root
     
@@ -54,3 +50,4 @@
     
     # アプリケーションの実行
     CMD ["./server"]
+    
