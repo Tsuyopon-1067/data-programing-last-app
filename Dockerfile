@@ -1,5 +1,5 @@
 # --- フロントエンドのビルドステージ ---
-FROM node:20 as frontend
+FROM node:latest as frontend
 
 # 作業ディレクトリの設定
 WORKDIR /app
