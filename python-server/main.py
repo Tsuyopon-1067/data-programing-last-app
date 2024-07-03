@@ -7,24 +7,24 @@ app = Flask(__name__)
 @app.route('/execute', methods=['POST'])
 def execute():
     data = request.get_json()
-    code = data.get['code', '']
-    
+    code = data.get('code', '')
+
     # 一時ファイルにコードを書き込む
-    with open('temp.py', 'w') as f:
+    with open('temp_code.py', 'w') as f:
         f.write(code)
-    
+
     try:
-        # Pythonコードを実行する
-        result = subprocess.run(['python3', 'temp.py'], capture_output=True, text=True, timeout=10)
+        # Pythonコードを実行
+        result = subprocess.run(['python3', 'temp_code.py'], capture_output=True, text=True, timeout=10)
         output = result.stdout
         error = result.stderr
     except subprocess.TimeoutExpired:
-        return jsonify({'output': '', 'error': 'Timeout Error'}), 400
+        return jsonify({'output': '', 'error': 'Execution timed out'}), 400
     finally:
-        # 一時ファイルを削除する
-        os.remove('temp.py')
+        # 一時ファイルを削除
+        os.remove('temp_code.py')
 
     return jsonify({'output': output, 'error': error})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=8081)
