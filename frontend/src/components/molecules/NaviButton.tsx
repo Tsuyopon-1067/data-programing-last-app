@@ -31,25 +31,5 @@ export const NaviButton: React.FC<{
       </Button>
     );
   }
-  if (responsive?.value === "tablet") {
-    return <IconButton onClick={() => navigate(url)}>{children}</IconButton>;
-  }
-  return (
-    <Button
-      onClick={() => navigate(url)}
-      variant="text"
-      sx={{
-        color: "black",
-        fontSize: "22px",
-        borderRadius: "16px",
-      }}
-    >
-      <div className={styles.buttonGrid}>
-        <div className={styles.iconArea}>
-          <div className={styles.iconMiddle}> {children} </div>
-        </div>
-        <div className={styles.nameArea}>{name}</div>
-      </div>
-    </Button>
-  );
+  return <IconButton onClick={() => navigate(url)}>{children}</IconButton>;
 };

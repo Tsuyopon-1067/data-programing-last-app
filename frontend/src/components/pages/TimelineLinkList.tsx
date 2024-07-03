@@ -1,7 +1,7 @@
 import { LinkList } from "../organisms/LinkList";
 import { TimeLine } from "../organisms/TimeLine";
-
 import styles from "./TimelineLinkList.module.css";
+
 export const TimeLineLinkList = () => {
   return (
     <div className={styles.main}>
@@ -14,4 +14,3 @@ export const TimeLineLinkList = () => {
     </div>
   );
 };
-

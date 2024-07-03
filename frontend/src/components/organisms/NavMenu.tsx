@@ -8,7 +8,7 @@ import { useContext } from "react";
 export const NaviMenu = () => {
   const responsive = useContext(ResponsiveContext);
   let paddingRight = "0";
-  if (responsive?.value === "tablet") {
+  if (responsive?.value === "tablet" || responsive?.value === "mobile") {
     paddingRight = "10px";
   }
   return (

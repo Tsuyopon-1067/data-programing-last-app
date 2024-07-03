@@ -14,13 +14,15 @@ interface ResponsiveContextType {
   value: Responsive;
   setValue: React.Dispatch<React.SetStateAction<Responsive>>;
 }
-export const ResponsiveContext = createContext<ResponsiveContextType | undefined>(undefined);
+export const ResponsiveContext = createContext<
+  ResponsiveContextType | undefined
+>(undefined);
 
 function App() {
   const [responsive, setResponsive] = useState<Responsive>("pc");
   const width = useWindowWidth();
   useEffect(() => {
-    if (width < 600) {
+    if (width < 810) {
       setResponsive("mobile");
     } else if (width < 1150) {
       setResponsive("tablet");
@@ -30,7 +32,9 @@ function App() {
   }, [width]);
   return (
     <>
-      <ResponsiveContext.Provider value={{ value: responsive, setValue: setResponsive }}>
+      <ResponsiveContext.Provider
+        value={{ value: responsive, setValue: setResponsive }}
+      >
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Xframe />}>
