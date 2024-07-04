@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { NaviMenu } from "../organisms/NavMenu";
+import { NaviMenu } from "../organisms/NaviMenu";
 import styles from "./Xframe.module.css";
 
 export const Xframe = () => {
