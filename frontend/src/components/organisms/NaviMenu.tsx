@@ -2,6 +2,7 @@ import { Home } from "@mui/icons-material";
 import { Stack } from "@mui/material";
 import { NaviButton } from "../molecules/NaviButton";
 import ArticleIcon from "@mui/icons-material/Article";
+import CloudIcon from '@mui/icons-material/Cloud';
 import { ResponsiveContext } from "../../App";
 import { useContext } from "react";
 
@@ -26,6 +27,9 @@ export const NaviMenu = () => {
     >
       <NaviButton name="ホーム" url="/">
         <Home sx={{ fontSize: "28px" }} />
+      </NaviButton>
+      <NaviButton name="Word Cloud" url="/wordcloud">
+        <CloudIcon sx={{ fontSize: "28px" }} />
       </NaviButton>
       <NaviButton name="発表資料" url="/slide">
         <ArticleIcon sx={{ fontSize: "28px" }} />
