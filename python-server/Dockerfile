@@ -7,8 +7,8 @@ WORKDIR /app
 # ソースコードをコピー
 COPY main.py .
 
-# Flaskをインストール
-RUN pip install flask
+# 必要なライブラリをインストール
+RUN pip install -r requirements.txt
 
 # ポートを公開
 EXPOSE 8081
