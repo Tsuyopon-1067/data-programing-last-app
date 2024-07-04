@@ -6,11 +6,17 @@ import { CircularProgress } from "@mui/material";
 export const WordCloudDisplay = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const WordCloudOrCircularProgress = () => {
-    if (isLoaded) {
-      return <WordCloudPic finishLoading={() => setIsLoaded(true)} />;
-    } else {
-      return <CircularProgress color="inherit" />;
-    }
+    return (
+      <div>
+        <div style={{ display: isLoaded ? "block" : "none" }}>
+          <WordCloudPic finishLoading={() => setIsLoaded(true)} />
+        </div>
+        <CircularProgress
+          color="inherit"
+          style={{ display: isLoaded ? "none" : "block" }}
+        />
+      </div>
+    )
 
   }
   return (
