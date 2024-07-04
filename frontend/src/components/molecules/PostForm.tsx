@@ -66,7 +66,7 @@ export const PostForm = ({ userName, handleSend }: PostFormProps) => {
       </div>
       <Button
         className={styles.postButton}
-        disabled={content === ""}
+        disabled={content === "" || content.length > 140}
         onClick={() => {
           sendPost(content);
         }}
