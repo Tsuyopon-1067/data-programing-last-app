@@ -4,6 +4,7 @@ from wordcloud import WordCloud
 from janome.tokenizer import Tokenizer
 import unicodedata
 import re
+import os
 
 args = sys.argv
 text = args[1]
@@ -35,10 +36,12 @@ for token in tokenized_text:
             words_list.append(tokenized_word)
 
 words_wakachi = " ".join(words_list)
-print(words_wakachi)
-font = './ipaexg.ttf'
-
-stopWords = ['ので', 'そう', 'から', 'ため', '自分', '投資', '運用']
+print("words_list ",words_list)
+print("words_wakachi ",words_wakachi)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+font = os.path.join(current_dir, './ipaexg.ttf')
+# 常用語句
+stopWords = ['ので', 'そう', 'から', 'ため']
 word_cloud = WordCloud(font_path=font, width=1500, height=900,
                        stopwords=set(stopWords), min_font_size=5,
                        collocations=False, background_color='white',

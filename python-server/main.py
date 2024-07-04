@@ -1,6 +1,8 @@
-from flask import Flask, request, jsonify
+from datetime import datetime
+from flask import Flask, request, jsonify, send_file, abort
 import subprocess
 import os
+from pathlib import Path
 
 app = Flask(__name__)
 
@@ -26,5 +28,30 @@ def execute():
 
     return jsonify({'output': output, 'error': error})
 
+@app.route('/fetch/wordcloud', methods=['POST'])
+def wordCloud():
+    data = request.get_json()
+    content = data.get('content', '')
+
+    formatted_date = datetime.now().strftime("%Y%m%d%H%M%S")
+    filename = formatted_date[0:13] + '.png'
+
+    file_path = Path(filename)
+    if not file_path.exists():
+        try:
+            # Pythonコードを実行
+            print("not exist")
+            print('python3', './word_cloud/word_cloud.py', content, filename)
+            subprocess.run(['python3', './word_cloud/word_cloud.py', content, filename], capture_output=True, text=True, timeout=10)
+        except subprocess.TimeoutExpired:
+            return jsonify({'output': '', 'error': 'Execution timed out'}), 400
+
+    file_path = Path(filename)
+    if os.path.exists(file_path):
+        return send_file(file_path, mimetype='image/png')
+    else:
+        abort(404, description="Resource not found")
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8081)
+    app.run(host='0.0.0.0', port=8081, debug=True)
