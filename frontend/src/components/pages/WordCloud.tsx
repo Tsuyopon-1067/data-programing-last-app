@@ -1,3 +1,7 @@
+import { WordCloudDisplay } from "../molecules/WordCloudDisplay"
+
 export const WordCloud = () => {
-  return <div>WordCloud</div>;
+  return (
+    <WordCloudDisplay />
+  )
 }
