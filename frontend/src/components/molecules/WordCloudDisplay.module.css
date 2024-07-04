@@ -1,0 +1,29 @@
+.main {
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  margin: 10px;
+}
+
+.description {
+  grid-row: 1 / 2;
+}
+
+.description h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.description p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.imgArea {
+  grid-row: 2 / 3;
+  min-height: 300px;
+  width: calc(100% - 30px);
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  border-style: solid;
+}
