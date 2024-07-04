@@ -2,15 +2,15 @@ package model
 
 // Message represents a chat message
 type Message struct {
-	Username string `json:"username"`
-	Message  string `json:"message"`
+	Username  string `json:"username"`
+	Message   string `json:"message"`
 	Timestamp string `json:"timestamp"`
 }
 
 // Response represents a chat response
 type Response struct {
-	Username string `json:"username"`
-	Message  string `json:"message"`
+	Username  string `json:"username"`
+	Message   string `json:"message"`
 	Timestamp string `json:"timestamp"`
 }
 
@@ -22,10 +22,10 @@ type ReceivedMessage struct {
 
 // ニュース1件
 type News struct {
-	Title string `json:"title"`
+	Title    string `json:"title"`
 	Category string `json:"category"`
-	Url string `json:"url"`
-	Comments int `json:"comments"`
+	Url      string `json:"url"`
+	Comments int    `json:"comments"`
 }
 
 // Pythonコードのリクエスト
@@ -37,4 +37,9 @@ type PythonCodeRequest struct {
 type PythonCodeResponse struct {
 	Output string `json:"output"`
 	Error  string `json:"error"`
+}
+
+// word cloudのリクエスト
+type WordCloudRequest struct {
+	Content string `json:"content"`
 }

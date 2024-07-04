@@ -2,33 +2,33 @@ package handler
 
 import (
 	"backend/api/service"
-	"io"
 	"net/http"
-	"os"
 
 	"github.com/labstack/echo/v4"
 )
 
+// Pythonサーバ上で生成されたword cloud画像をクライアントに返す
 func HandleWordCloud(c echo.Context) error {
-	err, imagePath := service.FetchWordCloud()
-	imagePath = "../../public/wordCloud/" + imagePath
-	if err != nil {
-		return err
-	}
-
-	file, err := os.Open(imagePath)
+	// FetchWordCloudを呼び出して画像データを取得
+	body, contentType, err := service.FetchWordCloud()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{
-			"error": "Failed to open image file",
+			"error":  "Failed to fetch word cloud",
+			"detail": err.Error(),
 		})
 	}
-	defer file.Close()
 
-	c.Response().Header().Set(echo.HeaderContentType, "image/png")
-	_, err = io.Copy(c.Response().Writer, file)
-	if err != nil {
+	if contentType == "" {
+		contentType = "application/octet-stream" // デフォルトのContent-Type
+	}
+
+	// クライアントにレスポンスを返す
+	c.Response().Header().Set(echo.HeaderContentType, contentType)
+	c.Response().WriteHeader(http.StatusOK)
+	if _, err := c.Response().Writer.Write(body); err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{
-			"error": "Failed to send image file",
+			"error":  "Failed to send response to client",
+			"detail": err.Error(),
 		})
 	}
 

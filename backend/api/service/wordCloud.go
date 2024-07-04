@@ -1,36 +1,44 @@
 package service
 
 import (
-	"fmt"
-	"log"
-	"math/rand"
-	"os/exec"
-	"time"
+	"backend/domain/model"
+	"bytes"
+	"encoding/json"
+	"io"
+	"net/http"
 )
 
-func FetchWordCloud() (error, string) {
+func FetchWordCloud() ([]byte, string, error) {
+	// 全ての投稿を統合する
 	allMessages := ""
 	for _, msg := range Store.GetAllMessages() {
 		allMessages += msg.Message + " "
 	}
-
-	cmd := exec.Command("python3", "wordcloud.py", allMessages)
-	err := cmd.Run()
+	allMessages = allMessages[:len(allMessages)-1]
+	requestData := model.WordCloudRequest{Content: allMessages}
+	postData, err := json.Marshal(requestData)
 	if err != nil {
-		log.Fatalf("Python script execution failed with error: %v", err)
+		return nil, "", err
 	}
 
-	fileName := "../../public/wordCloud/" + generateFileName() + ".png"
+	// POSTリクエストを送信
+	// 画像データはresp.body
+	resp, err := http.Post("http://python:8081/fetch/wordcloud", "application/json", bytes.NewBuffer(postData))
 	if err != nil {
-		log.Fatalf("Failed to read image file: %v", err)
+		return nil, "", err
 	}
-	return err, fileName
-}
+	defer resp.Body.Close()
 
-func generateFileName() string {
-	timestamp := time.Now().Format("20060102150405")
-	rand.Seed(time.Now().UnixNano())
-	randomNumber := rand.Intn(10000)
-	result := fmt.Sprintf("%s%04d", timestamp, randomNumber)
-	return result
+	// Content-Type ヘッダーを取得
+	contentType := resp.Header.Get("Content-Type")
+	if contentType == "" {
+		contentType = "application/octet-stream" // デフォルトのContent-Type
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, "", err
+	}
+
+	return body, contentType, nil
 }
