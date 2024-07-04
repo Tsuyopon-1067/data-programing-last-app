@@ -40,8 +40,6 @@ def wordCloud():
     if not file_path.exists():
         try:
             # Pythonコードを実行
-            print("not exist")
-            print('python3', './word_cloud/word_cloud.py', content, filename)
             subprocess.run(['python3', './word_cloud/word_cloud.py', content, filename], capture_output=True, text=True, timeout=10)
         except subprocess.TimeoutExpired:
             return jsonify({'output': '', 'error': 'Execution timed out'}), 400
@@ -50,8 +48,8 @@ def wordCloud():
     if os.path.exists(file_path):
         return send_file(file_path, mimetype='image/png')
     else:
-        abort(404, description="Resource not found")
+        abort(500, description="phthon excut error")
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8081, debug=True)
+    app.run(host='0.0.0.0', port=8081)
