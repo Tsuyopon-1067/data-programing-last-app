@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"backend/api/service"
+	"io"
 	"net/http"
 	"os"
 
@@ -8,7 +10,7 @@ import (
 )
 
 func HandleWordCloud(c echo.Context) error {
-	err, imagePath := Service.FetchWordCloud()
+	err, imagePath := service.FetchWordCloud()
 	imagePath = "../../public/wordCloud/" + imagePath
 	if err != nil {
 		return err

@@ -2,16 +2,16 @@ package service
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
-	"os"
+	"math/rand"
 	"os/exec"
+	"time"
 )
 
-func FetchWordCloud() (err, string) {
+func FetchWordCloud() (error, string) {
 	allMessages := ""
 	for _, msg := range Store.GetAllMessages() {
-		websocket.JSON.Send(ws, msg)
+		allMessages += msg.Message + " "
 	}
 
 	cmd := exec.Command("python3", "wordcloud.py", allMessages)
@@ -24,13 +24,13 @@ func FetchWordCloud() (err, string) {
 	if err != nil {
 		log.Fatalf("Failed to read image file: %v", err)
 	}
-	return err, imgData
+	return err, fileName
 }
 
 func generateFileName() string {
-	timestamp := now.Format("20060102150405")
+	timestamp := time.Now().Format("20060102150405")
 	rand.Seed(time.Now().UnixNano())
 	randomNumber := rand.Intn(10000)
 	result := fmt.Sprintf("%s%04d", timestamp, randomNumber)
-	return resutlt
+	return result
 }
