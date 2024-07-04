@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: golang
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,11 +15,18 @@ services:
     restart: unless-stopped
     depends_on:
       - python-server
-  
+    networks:
+      - my_network
+
   python-server:
+    container_name: python
     build:
       context: python-server
       dockerfile: Dockerfile
     ports:
       - "8081:8081"
+    networks:
+      - my_network
 
+networks:
+  my_network:
