@@ -1,5 +1,5 @@
-import { CodeItem } from "../molecules/CodeItem"
+import { CodeRunnerList } from "../organisms/CodeRunnerList"
 
 export const CodeRunner = () => {
-  return <CodeItem />
+  return <CodeRunnerList />
 }
