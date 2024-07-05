@@ -4,6 +4,6 @@ export type CodeSendData = {
 
 export type CodeResultData = {
   output: string;
-  err: string;
+  error: string;
 }
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./CodeItem.module.css";
 import { CodeArea } from "../atom/CodeArea";
 import { Card, CardContent, Stack } from "@mui/material";
-import { CodeSendData } from "../../types/codeType";
+import { CodeResultData, CodeSendData } from "../../types/codeType";
 import { CodeRunStatus } from "../../types/codeRunStatus";
 import { CodeButton } from "../atom/CodeButton";
 
@@ -15,23 +15,28 @@ export const CodeItem = () => {
     setCodeRunResultStatus("running");
 
     const sendData: CodeSendData = { code: code };
-    const res = await fetch('/execute/python', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(sendData),
-    });
 
-    const data = await res.json();
+    try {
+      const res = await fetch('/execute/python', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sendData),
+      });
 
-    if (data.err === "") {
-      setCodeRunResultStatus("success");
-      setResult(data.output);
-      return;
+      const data: CodeResultData = await res.json();
+
+      if (data.error === "") {
+        setCodeRunResultStatus("success");
+        setResult(data.output);
+      } else {
+        setCodeRunResultStatus("error");
+        setResult(data.error);
+      }
+    } catch (error) {
+      setCodeRunResultStatus("error");
     }
-    setCodeRunResultStatus("error");
-    setResult(data.err);
   };
 
   return (
@@ -57,7 +62,7 @@ export const CodeItem = () => {
           >
             <div className={styles.codeContainer}>
               <div className={styles.buttonArea}>
-                <CodeButton onClick={handleSubmit} status={codeRunResultStatus} />
+                <CodeButton handleSubmit={handleSubmit} status={codeRunResultStatus} />
               </div>
               <div className={styles.codeArea}>
                 <CodeArea value={code} setValue={setCode} />
