@@ -19,6 +19,7 @@ export const NaviMenu = () => {
       spacing={2}
       height={"100vh"}
       width={"100%"}
+      padding={"10px"}
       paddingRight={paddingRight}
       alignItems="left"
       sx={{
