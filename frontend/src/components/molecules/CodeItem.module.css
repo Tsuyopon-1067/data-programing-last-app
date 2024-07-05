@@ -1,0 +1,25 @@
+.main {
+  padding: 10px;
+}
+
+.codeContainer {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  margin: 0;
+}
+
+.buttonArea {
+  grid-column: 1 / 2;
+  background-color: #eeeeee;
+}
+
+.codeArea {
+  grid-column: 2 / 3;
+  background-color: #f7f7f7;
+}
+
+.resultArea {
+  grid-column: 2 / 3;
+  text-align: left;
+}
+

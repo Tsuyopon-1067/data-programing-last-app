@@ -21,4 +21,5 @@
   grid-column: 2 / 3;
   text-align: left;
   justify-content: center;
+  text-transform: initial;
 }
