@@ -10,6 +10,7 @@ import { createContext, useEffect, useState } from "react";
 import { Responsive } from "./types/responsivie";
 import { useWindowWidth } from "./hooks/UseWindowWidth";
 import { WordCloud } from "./components/pages/WordCloud";
+import { CodeRunner } from "./components/pages/CodeRunner";
 
 interface ResponsiveContextType {
   value: Responsive;
@@ -41,6 +42,7 @@ function App() {
             <Route path="/" element={<Xframe />}>
               <Route path="/" element={<TimeLineLinkList />} />
               <Route path="/wordcloud" element={<WordCloud />} />
+              <Route path="/coderunner" element={<CodeRunner />} />
               <Route path="/slide" element={<Slide />} />
               <Route path="/techStack" element={<TechStack />} />
               <Route path="/architecture" element={<Architecture />} />
