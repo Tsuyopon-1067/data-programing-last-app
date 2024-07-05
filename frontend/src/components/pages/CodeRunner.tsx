@@ -1,3 +1,5 @@
+import { CodeItem } from "../molecules/CodeItem"
+
 export const CodeRunner = () => {
-  return <div>CodeRunner</div>;
+  return <CodeItem />
 }
