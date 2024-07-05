@@ -1,16 +1,18 @@
 import { useState } from "react";
 import styles from "./CodeItem.module.css";
 import { CodeArea } from "../atom/CodeArea";
-import { Card, CardContent, IconButton, Stack } from "@mui/material";
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import { Card, CardContent, Stack } from "@mui/material";
 import { CodeSendData } from "../../types/codeType";
+import { CodeRunStatus } from "../../types/codeRunStatus";
+import { CodeButton } from "../atom/CodeButton";
 
 export const CodeItem = () => {
   const [code, setCode] = useState<string>("");
-  const [result, setResult] = useState<string>("hogehoge");
+  const [result, setResult] = useState<string>("");
+  const [codeRunResultStatus, setCodeRunResultStatus] = useState<CodeRunStatus>("idle");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    setCodeRunResultStatus("running");
 
     const sendData: CodeSendData = { code: code };
     const res = await fetch('/execute/python', {
@@ -22,14 +24,21 @@ export const CodeItem = () => {
     });
 
     const data = await res.json();
-    setResult(data.output);
+
+    if (data.err === "") {
+      setCodeRunResultStatus("success");
+      setResult(data.output);
+      return;
+    }
+    setCodeRunResultStatus("error");
+    setResult(data.err);
   };
 
   return (
     <div className={styles.main}>
       <Card
         sx={{
-          padding: "0 0 4px 0",
+          padding: "0",
         }}
       >
         <CardContent
@@ -48,22 +57,23 @@ export const CodeItem = () => {
           >
             <div className={styles.codeContainer}>
               <div className={styles.buttonArea}>
-                <IconButton onClick={handleSubmit}>
-                  <PlayCircleIcon />
-                </IconButton>
+                <CodeButton onClick={handleSubmit} status={codeRunResultStatus} />
               </div>
               <div className={styles.codeArea}>
                 <CodeArea value={code} setValue={setCode} />
               </div>
             </div>
             <div className={styles.codeContainer}>
-              <div className={styles.resultArea}>
+              <div
+                className={styles.resultArea}
+                style={result.length !== 0 ? { paddingBottom: "4px" } : {}}
+              >
                 {result}
               </div>
             </div>
           </Stack >
         </CardContent>
       </Card>
-    </div>
+    </div >
   )
 }
