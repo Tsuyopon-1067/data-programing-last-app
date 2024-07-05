@@ -65,7 +65,7 @@ export const CodeItem = () => {
                 <CodeButton handleSubmit={handleSubmit} status={codeRunResultStatus} />
               </div>
               <div className={styles.codeArea}>
-                <CodeArea value={code} setValue={setCode} />
+                <CodeArea handleSubmit={handleSubmit} value={code} setValue={setCode} />
               </div>
             </div>
             <div className={styles.codeContainer}>
