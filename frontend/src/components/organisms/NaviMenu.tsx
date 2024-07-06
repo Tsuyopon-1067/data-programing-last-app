@@ -1,4 +1,10 @@
-import { Architecture, FormatListBulleted, Home, QrCode2, TableRows } from "@mui/icons-material";
+import {
+  Architecture,
+  FormatListBulleted,
+  Home,
+  QrCode2,
+  TableRows,
+} from "@mui/icons-material";
 import ArticleIcon from "@mui/icons-material/Article";
 import CloudIcon from "@mui/icons-material/Cloud";
 import CodeIcon from "@mui/icons-material/Code";
@@ -6,7 +12,7 @@ import { Stack } from "@mui/material";
 import { useContext } from "react";
 import { ResponsiveContext } from "../../App";
 import { NaviButton } from "../molecules/NaviButton";
-https://github.com/Tsuyopon-1067/data-programing-last-app/pull/72/conflicts
+
 export const NaviMenu = () => {
   const responsive = useContext(ResponsiveContext);
   let paddingRight = "0";
