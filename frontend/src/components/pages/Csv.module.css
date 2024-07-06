@@ -1,0 +1,13 @@
+.buttonGrid {
+  display: grid;
+  padding-top: 10px;
+  grid-template-columns: 1fr 1fr;
+  height: 300px;
+  gap: 10px;
+}
+
+.buttonGrid1 {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
