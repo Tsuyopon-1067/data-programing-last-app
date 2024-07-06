@@ -1,4 +1,4 @@
-import { FormatListBulleted, Home, QrCode2 } from "@mui/icons-material";
+import { Architecture, FormatListBulleted, Home, QrCode2, TableRows } from "@mui/icons-material";
 import ArticleIcon from "@mui/icons-material/Article";
 import CloudIcon from "@mui/icons-material/Cloud";
 import CodeIcon from "@mui/icons-material/Code";
@@ -6,7 +6,7 @@ import { Stack } from "@mui/material";
 import { useContext } from "react";
 import { ResponsiveContext } from "../../App";
 import { NaviButton } from "../molecules/NaviButton";
-
+https://github.com/Tsuyopon-1067/data-programing-last-app/pull/72/conflicts
 export const NaviMenu = () => {
   const responsive = useContext(ResponsiveContext);
   let paddingRight = "0";
@@ -43,10 +43,10 @@ export const NaviMenu = () => {
         <ArticleIcon sx={{ fontSize: "28px" }} />
       </NaviButton>
       <NaviButton name="アーキテクチャ" url="/architecture">
-        <Home sx={{ fontSize: "28px" }} />
+        <Architecture sx={{ fontSize: "28px" }} />
       </NaviButton>
       <NaviButton name="技術スタック" url="/techstack">
-        <Home sx={{ fontSize: "28px" }} />
+        <TableRows sx={{ fontSize: "28px" }} />
       </NaviButton>
       <NaviButton name="QRコード" url="/qr">
         <QrCode2 sx={{ fontSize: "28px" }} />

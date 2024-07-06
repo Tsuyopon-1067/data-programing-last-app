@@ -1,5 +1,15 @@
+import styles from "./Architecture.module.css";
 export const Architecture = () => {
   return (
-    <h1>Architecture</h1>
-  )
-}
+    <div>
+      <h1>アーキテクチャ</h1>
+      <div>
+        <img
+          className={styles.img}
+          src="/architecture.png"
+          alt="architecture"
+        />
+      </div>
+    </div>
+  );
+};
