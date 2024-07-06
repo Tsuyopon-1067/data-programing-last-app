@@ -1,4 +1,4 @@
-import { FormatListBulleted, Home } from "@mui/icons-material";
+import { FormatListBulleted, Home, QrCode2 } from "@mui/icons-material";
 import ArticleIcon from "@mui/icons-material/Article";
 import CloudIcon from "@mui/icons-material/Cloud";
 import CodeIcon from "@mui/icons-material/Code";
@@ -49,7 +49,7 @@ export const NaviMenu = () => {
         <Home sx={{ fontSize: "28px" }} />
       </NaviButton>
       <NaviButton name="QRコード" url="/qr">
-        <Home sx={{ fontSize: "28px" }} />
+        <QrCode2 sx={{ fontSize: "28px" }} />
       </NaviButton>
     </Stack>
   );
