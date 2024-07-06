@@ -1,4 +1,5 @@
-import { Architecture, FormatListBulleted, Home } from "@mui/icons-material";
+
+import { Architecture, FormatListBulleted, Home, TableRows } from "@mui/icons-material";
 import ArticleIcon from "@mui/icons-material/Article";
 import CloudIcon from "@mui/icons-material/Cloud";
 import CodeIcon from "@mui/icons-material/Code";
@@ -46,7 +47,7 @@ export const NaviMenu = () => {
         <Architecture sx={{ fontSize: "28px" }} />
       </NaviButton>
       <NaviButton name="技術スタック" url="/techstack">
-        <Home sx={{ fontSize: "28px" }} />
+        <TableRows sx={{ fontSize: "28px" }} />
       </NaviButton>
       <NaviButton name="QRコード" url="/qr">
         <Home sx={{ fontSize: "28px" }} />
