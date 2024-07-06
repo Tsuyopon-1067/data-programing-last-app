@@ -1,7 +1,7 @@
-import { Architecture } from "@mui/icons-material";
 import { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import { Architecture } from "./components/pages/Architecture";
 import { CodeRunner } from "./components/pages/CodeRunner";
 import { Csv } from "./components/pages/Csv";
 import { Qr } from "./components/pages/Qr";
