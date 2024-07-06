@@ -1,11 +1,11 @@
-import { Home } from "@mui/icons-material";
-import { Stack } from "@mui/material";
-import { NaviButton } from "../molecules/NaviButton";
+import { FormatListBulleted, Home } from "@mui/icons-material";
 import ArticleIcon from "@mui/icons-material/Article";
-import CloudIcon from '@mui/icons-material/Cloud';
-import { ResponsiveContext } from "../../App";
-import CodeIcon from '@mui/icons-material/Code';
+import CloudIcon from "@mui/icons-material/Cloud";
+import CodeIcon from "@mui/icons-material/Code";
+import { Stack } from "@mui/material";
 import { useContext } from "react";
+import { ResponsiveContext } from "../../App";
+import { NaviButton } from "../molecules/NaviButton";
 
 export const NaviMenu = () => {
   const responsive = useContext(ResponsiveContext);
@@ -35,6 +35,9 @@ export const NaviMenu = () => {
       </NaviButton>
       <NaviButton name="Python" url="/coderunner">
         <CodeIcon sx={{ fontSize: "28px" }} />
+      </NaviButton>
+      <NaviButton name="CSV出力" url="/csv">
+        <FormatListBulleted sx={{ fontSize: "28px" }} />
       </NaviButton>
       <NaviButton name="発表資料" url="/slide">
         <ArticleIcon sx={{ fontSize: "28px" }} />

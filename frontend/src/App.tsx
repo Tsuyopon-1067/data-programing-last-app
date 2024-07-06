@@ -1,16 +1,17 @@
 import { Architecture } from "@mui/icons-material";
-import "./App.css";
-import { Slide } from "./components/pages/Slide";
-import { TimeLineLinkList } from "./components/pages/TimelineLinkList";
-import { Xframe } from "./components/templetes/Xframe";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { TechStack } from "./components/pages/TechStack";
-import { Qr } from "./components/pages/Qr";
 import { createContext, useEffect, useState } from "react";
-import { Responsive } from "./types/responsivie";
-import { useWindowWidth } from "./hooks/UseWindowWidth";
-import { WordCloud } from "./components/pages/WordCloud";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
 import { CodeRunner } from "./components/pages/CodeRunner";
+import { Csv } from "./components/pages/Csv";
+import { Qr } from "./components/pages/Qr";
+import { Slide } from "./components/pages/Slide";
+import { TechStack } from "./components/pages/TechStack";
+import { TimeLineLinkList } from "./components/pages/TimelineLinkList";
+import { WordCloud } from "./components/pages/WordCloud";
+import { Xframe } from "./components/templetes/Xframe";
+import { useWindowWidth } from "./hooks/UseWindowWidth";
+import { Responsive } from "./types/responsivie";
 
 interface ResponsiveContextType {
   value: Responsive;
@@ -43,6 +44,7 @@ function App() {
               <Route path="/" element={<TimeLineLinkList />} />
               <Route path="/wordcloud" element={<WordCloud />} />
               <Route path="/coderunner" element={<CodeRunner />} />
+              <Route path="/csv" element={<Csv />} />
               <Route path="/slide" element={<Slide />} />
               <Route path="/techStack" element={<TechStack />} />
               <Route path="/architecture" element={<Architecture />} />
