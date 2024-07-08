@@ -18,6 +18,7 @@ var forbiddenImports = []string{
 	"pickle",
 	"eval",
 	"exec",
+	"matplotlib",
 	// Add more dangerous packages as needed
 }
 
