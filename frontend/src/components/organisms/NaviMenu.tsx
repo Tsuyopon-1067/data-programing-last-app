@@ -33,6 +33,9 @@ export const NaviMenu = () => {
         borderColor: "#EFF3F4",
       }}
     >
+      <NaviButton name="" url="/">
+        <img src="/logo.png" width="28px"/>
+      </NaviButton>
       <NaviButton name="ホーム" url="/">
         <Home sx={{ fontSize: "28px" }} />
       </NaviButton>
