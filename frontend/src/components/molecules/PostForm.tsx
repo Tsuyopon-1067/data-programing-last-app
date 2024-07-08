@@ -13,13 +13,13 @@ type PostFormProps = {
 
 export const PostForm = ({ userName, handleSend }: PostFormProps) => {
   const [content, setContent] = useState<string>("");
+  const isEnablePost = () => content !== "" && content.length <= 140;
   const { isDarkMode } = useDarkTheme();
   const sendPost = (content: string) => {
-    if (content === "") {
-      return;
+    if (isEnablePost()) {
+      handleSend(content);
+      setContent("");
     }
-    handleSend(content);
-    setContent("");
   };
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>): void => {
     // ctr + Enter or command + Enter
@@ -50,7 +50,6 @@ export const PostForm = ({ userName, handleSend }: PostFormProps) => {
           multiline
           variant="standard"
           fullWidth
-          maxRows={4}
           value={content}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setContent(event.target.value);
@@ -66,7 +65,7 @@ export const PostForm = ({ userName, handleSend }: PostFormProps) => {
       </div>
       <Button
         className={styles.postButton}
-        disabled={content === "" || content.length > 140}
+        disabled={!isEnablePost()}
         onClick={() => {
           sendPost(content);
         }}
@@ -89,6 +88,6 @@ export const PostForm = ({ userName, handleSend }: PostFormProps) => {
       >
         ポストする
       </Button>
-    </div >
+    </div>
   );
 };
