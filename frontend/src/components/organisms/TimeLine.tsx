@@ -47,7 +47,12 @@ export const TimeLine = () => {
         message: data.message,
         timestamp: data.timestamp,
       };
-      setPastPostsData((prev) => [...prev, newData]);
+      setPastPostsData((prev) => {
+        const updatedPosts = [...prev, newData].sort(
+          (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+        );
+        return updatedPosts;
+      });
     };
 
     return () => {
@@ -72,7 +77,7 @@ export const TimeLine = () => {
     if (display === 1) {
       return pastPostsData
         .slice()
-        .reverse()
+        // .reverse()
         .filter((postData) => postData.username === userName)
         .map((postData) => (
           <PostItem
@@ -84,7 +89,7 @@ export const TimeLine = () => {
     }
     return pastPostsData
       .slice()
-      .reverse()
+      // .reverse()
       .map((postData) => (
         <PostItem
           name={postData.username}
