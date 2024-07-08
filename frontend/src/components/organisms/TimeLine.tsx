@@ -1,3 +1,4 @@
+import styles from "./TimeLine.module.css";
 import { Box, Stack } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { ReceiveMessageType } from "../../types/receiveMessage";
@@ -5,7 +6,7 @@ import { SendMessageType } from "../../types/sendMessage";
 import { PostForm } from "../molecules/PostForm";
 import { PostItem } from "../molecules/PostItem";
 import Tab from "@mui/material/Tab";
-import Tabs from '@mui/material/Tabs';
+import Tabs from "@mui/material/Tabs";
 
 export const TimeLine = () => {
   const ws = useRef<WebSocket | null>(null);
@@ -101,14 +102,16 @@ export const TimeLine = () => {
       spacing={0}
       width={"100%"}
     >
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={displayedPost} onChange={handleChange} variant="fullWidth" >
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs value={displayedPost} onChange={handleChange} variant="fullWidth">
           <Tab label="全ての投稿" />
           <Tab label="自分の投稿" />
         </Tabs>
       </Box>
       <PostForm userName={userName} handleSend={handleSend} />
-      <PastPosts display={displayedPost} />
+      <div className={styles.otherPost}>
+        <PastPosts display={displayedPost} />
+      </div>
     </Stack>
   );
 };
