@@ -6,9 +6,18 @@ import (
 )
 
 var forbiddenImports = []string{
+	"tkinter",
+	"PyQt5",
+	"PySide2",
+	"wx",
+	"kivy",
 	"os",
 	"sys",
 	"subprocess",
+	"shutil",
+	"pickle",
+	"eval",
+	"exec",
 	// Add more dangerous packages as needed
 }
 
