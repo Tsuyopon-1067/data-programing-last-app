@@ -17,7 +17,7 @@ def execute():
 
     try:
         # Pythonコードを実行
-        result = subprocess.run(['python3', 'temp_code.py'], capture_output=True, text=True, timeout=10)
+        result = subprocess.run(['python3', 'temp_code.py'], capture_output=True, text=True, timeout=1)
         output = result.stdout
         error = result.stderr
     except subprocess.TimeoutExpired:
