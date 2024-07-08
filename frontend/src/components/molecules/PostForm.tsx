@@ -50,7 +50,6 @@ export const PostForm = ({ userName, handleSend }: PostFormProps) => {
           multiline
           variant="standard"
           fullWidth
-          maxRows={4}
           value={content}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setContent(event.target.value);
