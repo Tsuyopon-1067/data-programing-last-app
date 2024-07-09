@@ -19,7 +19,7 @@ export const LogoButton = () => {
     );
   }
   return (
-    <div className={styles.buttonNotPcDiv}>
+    <div style={{ marginLeft: "-8px" }}>
       <LogoButtonCompoennt />
     </div>
   );
