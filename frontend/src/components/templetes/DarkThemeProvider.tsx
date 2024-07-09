@@ -11,6 +11,8 @@ interface ThemeContextType {
   setIsDarkMode: (isDarkMode: boolean) => void;
   fontColor: string;
   borderColor: string;
+  tabFontColor: string;
+  selectedTabFontColor: string;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -21,6 +23,8 @@ export const DarkThemeProvider: React.FC<{ children: ReactNode }> = ({
   const [isDarkMode, setIsDarkMode] = useState(false);
   const fontColor = isDarkMode ? "#E7E9EA" : "#0F1419";
   const borderColor = isDarkMode ? "#2F3336" : "#e1e8ed";
+  const tabFontColor = isDarkMode ? "#71767B" : "#536471";
+  const selectedTabFontColor = isDarkMode ? "#E7E9EA" : "#0F1419";
 
   useEffect(() => {
     const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
@@ -34,7 +38,14 @@ export const DarkThemeProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <ThemeContext.Provider
-      value={{ isDarkMode, setIsDarkMode, fontColor, borderColor }}
+      value={{
+        isDarkMode,
+        setIsDarkMode,
+        fontColor,
+        borderColor,
+        tabFontColor,
+        selectedTabFontColor,
+      }}
     >
       {children}
     </ThemeContext.Provider>

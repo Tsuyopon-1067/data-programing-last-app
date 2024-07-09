@@ -6,9 +6,11 @@ import { ReceiveMessageType } from "../../types/receiveMessage";
 import { SendMessageType } from "../../types/sendMessage";
 import { PostForm } from "../molecules/PostForm";
 import { PostItem } from "../molecules/PostItem";
+import { useDarkTheme } from "../templetes/DarkThemeProvider";
 import styles from "./TimeLine.module.css";
 
 export const TimeLine = () => {
+  const { tabFontColor, selectedTabFontColor } = useDarkTheme();
   const ws = useRef<WebSocket | null>(null);
   const [userName, setUserName] = useState<string>("");
   const [pastPostsData, setPastPostsData] = useState<ReceiveMessageType[]>([]);
@@ -114,8 +116,24 @@ export const TimeLine = () => {
     >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs value={displayedPost} onChange={handleChange} variant="fullWidth">
-          <Tab label="全ての投稿" />
-          <Tab label="自分の投稿" />
+          <Tab
+            sx={{
+              color: tabFontColor,
+              "&.Mui-selected": {
+                color: selectedTabFontColor,
+              },
+            }}
+            label="全ての投稿"
+          />
+          <Tab
+            sx={{
+              color: tabFontColor,
+              "&.Mui-selected": {
+                color: selectedTabFontColor,
+              },
+            }}
+            label="自分の投稿"
+          />
         </Tabs>
       </Box>
       <PostForm userName={userName} handleSend={handleSend} />
