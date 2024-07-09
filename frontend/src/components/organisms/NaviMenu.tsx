@@ -13,9 +13,11 @@ import { useContext } from "react";
 import { ResponsiveContext } from "../../App";
 import { LogoButton } from "../molecules/LogoButton";
 import { NaviButton } from "../molecules/NaviButton";
+import { useDarkTheme } from "../templetes/DarkThemeProvider";
 
 export const NaviMenu = () => {
   const responsive = useContext(ResponsiveContext);
+  const { borderColor } = useDarkTheme();
   let paddingRight = "0";
   if (responsive?.value === "tablet" || responsive?.value === "mobile") {
     paddingRight = "10px";
@@ -31,7 +33,7 @@ export const NaviMenu = () => {
       alignItems="left"
       sx={{
         borderRight: "1px solid",
-        borderColor: "#EFF3F4",
+        borderColor: borderColor,
       }}
     >
       <LogoButton />

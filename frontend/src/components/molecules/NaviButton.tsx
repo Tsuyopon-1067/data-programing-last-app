@@ -2,6 +2,7 @@ import { Button, IconButton } from "@mui/material";
 import { ReactNode, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ResponsiveContext } from "../../App";
+import { useDarkTheme } from "../templetes/DarkThemeProvider";
 import styles from "./NaviButton.module.css";
 
 export const NaviButton: React.FC<{
@@ -9,6 +10,7 @@ export const NaviButton: React.FC<{
   name: string;
   url: string;
 }> = ({ children, name, url }) => {
+  const { isDarkMode, fontColor } = useDarkTheme();
   const navigate = useNavigate();
   const responsive = useContext(ResponsiveContext);
   if (responsive?.value === "pc") {
@@ -17,7 +19,7 @@ export const NaviButton: React.FC<{
         onClick={() => navigate(url)}
         variant="text"
         sx={{
-          color: "#757575",
+          color: isDarkMode ? "#E7E9EA" : "#0F1419",
           fontSize: "22px",
           borderRadius: "16px",
         }}
@@ -26,7 +28,9 @@ export const NaviButton: React.FC<{
           <div className={styles.iconArea}>
             <div className={styles.iconMiddle}> {children} </div>
           </div>
-          <div className={styles.nameArea}>{name}</div>
+          <div className={styles.nameArea} style={{ color: fontColor }}>
+            {name}
+          </div>
         </div>
       </Button>
     );

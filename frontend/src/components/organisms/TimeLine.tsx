@@ -1,14 +1,16 @@
-import styles from "./TimeLine.module.css";
 import { Box, Stack } from "@mui/material";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
 import { useEffect, useRef, useState } from "react";
 import { ReceiveMessageType } from "../../types/receiveMessage";
 import { SendMessageType } from "../../types/sendMessage";
 import { PostForm } from "../molecules/PostForm";
 import { PostItem } from "../molecules/PostItem";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
+import { useDarkTheme } from "../templetes/DarkThemeProvider";
+import styles from "./TimeLine.module.css";
 
 export const TimeLine = () => {
+  const { tabFontColor, selectedTabFontColor } = useDarkTheme();
   const ws = useRef<WebSocket | null>(null);
   const [userName, setUserName] = useState<string>("");
   const [pastPostsData, setPastPostsData] = useState<ReceiveMessageType[]>([]);
@@ -49,7 +51,8 @@ export const TimeLine = () => {
       };
       setPastPostsData((prev) => {
         const updatedPosts = [...prev, newData].sort(
-          (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+          (a, b) =>
+            new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
         );
         return updatedPosts;
       });
@@ -75,28 +78,32 @@ export const TimeLine = () => {
   const PastPosts: React.FC<{ display: number }> = ({ display }) => {
     // displayが1の時は自分の投稿のみ表示
     if (display === 1) {
-      return pastPostsData
+      return (
+        pastPostsData
+          .slice()
+          // .reverse()
+          .filter((postData) => postData.username === userName)
+          .map((postData) => (
+            <PostItem
+              name={postData.username}
+              content={postData.message}
+              date={postData.timestamp}
+            />
+          ))
+      );
+    }
+    return (
+      pastPostsData
         .slice()
         // .reverse()
-        .filter((postData) => postData.username === userName)
         .map((postData) => (
           <PostItem
             name={postData.username}
             content={postData.message}
             date={postData.timestamp}
           />
-        ));
-    }
-    return pastPostsData
-      .slice()
-      // .reverse()
-      .map((postData) => (
-        <PostItem
-          name={postData.username}
-          content={postData.message}
-          date={postData.timestamp}
-        />
-      ));
+        ))
+    );
   };
 
   return (
@@ -109,8 +116,24 @@ export const TimeLine = () => {
     >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs value={displayedPost} onChange={handleChange} variant="fullWidth">
-          <Tab label="全ての投稿" />
-          <Tab label="自分の投稿" />
+          <Tab
+            sx={{
+              color: tabFontColor,
+              "&.Mui-selected": {
+                color: selectedTabFontColor,
+              },
+            }}
+            label="全ての投稿"
+          />
+          <Tab
+            sx={{
+              color: tabFontColor,
+              "&.Mui-selected": {
+                color: selectedTabFontColor,
+              },
+            }}
+            label="自分の投稿"
+          />
         </Tabs>
       </Box>
       <PostForm userName={userName} handleSend={handleSend} />
