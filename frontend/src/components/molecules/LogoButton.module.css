@@ -1,0 +1,29 @@
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-gap: 20px;
+  justify-content: center;
+  height: 32px;
+  margin: 0 20px;
+  width: 100%;
+}
+
+.iconArea {
+  grid-column: 1 / 2;
+}
+
+.iconMiddle {
+  position: relative;
+  top: 4px;
+}
+
+.nameArea {
+  grid-column: 2 / 3;
+  text-align: left;
+  justify-content: center;
+  text-transform: initial;
+}
+
+.buttonNotPcDiv {
+  margin-left: 0 0 0 -11px;
+}
