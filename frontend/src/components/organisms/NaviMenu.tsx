@@ -11,6 +11,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import { Stack } from "@mui/material";
 import { useContext } from "react";
 import { ResponsiveContext } from "../../App";
+import { LogoButton } from "../molecules/LogoButton";
 import { NaviButton } from "../molecules/NaviButton";
 
 export const NaviMenu = () => {
@@ -33,6 +34,7 @@ export const NaviMenu = () => {
         borderColor: "#EFF3F4",
       }}
     >
+      <LogoButton />
       <NaviButton name="ホーム" url="/">
         <Home sx={{ fontSize: "28px" }} />
       </NaviButton>

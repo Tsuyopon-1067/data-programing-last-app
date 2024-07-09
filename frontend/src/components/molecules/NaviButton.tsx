@@ -1,8 +1,8 @@
 import { Button, IconButton } from "@mui/material";
 import { ReactNode, useContext } from "react";
-import styles from "./NaviButton.module.css";
 import { useNavigate } from "react-router-dom";
 import { ResponsiveContext } from "../../App";
+import styles from "./NaviButton.module.css";
 
 export const NaviButton: React.FC<{
   children: ReactNode;
@@ -17,7 +17,7 @@ export const NaviButton: React.FC<{
         onClick={() => navigate(url)}
         variant="text"
         sx={{
-          color: "black",
+          color: "#757575",
           fontSize: "22px",
           borderRadius: "16px",
         }}
@@ -31,5 +31,18 @@ export const NaviButton: React.FC<{
       </Button>
     );
   }
-  return <IconButton onClick={() => navigate(url)}>{children}</IconButton>;
+  return (
+    <div style={{ marginLeft: "-8px" }}>
+      <IconButton
+        onClick={() => navigate(url)}
+        sx={{
+          paddingLeft: 0,
+          paddingRight: 0,
+          width: "44px",
+        }}
+      >
+        {children}
+      </IconButton>
+    </div>
+  );
 };
