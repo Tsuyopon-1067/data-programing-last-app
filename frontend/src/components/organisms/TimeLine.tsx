@@ -1,12 +1,12 @@
-import styles from "./TimeLine.module.css";
 import { Box, Stack } from "@mui/material";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
 import { useEffect, useRef, useState } from "react";
 import { ReceiveMessageType } from "../../types/receiveMessage";
 import { SendMessageType } from "../../types/sendMessage";
 import { PostForm } from "../molecules/PostForm";
 import { PostItem } from "../molecules/PostItem";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
+import styles from "./TimeLine.module.css";
 
 export const TimeLine = () => {
   const ws = useRef<WebSocket | null>(null);
@@ -49,7 +49,8 @@ export const TimeLine = () => {
       };
       setPastPostsData((prev) => {
         const updatedPosts = [...prev, newData].sort(
-          (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+          (a, b) =>
+            new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
         );
         return updatedPosts;
       });
@@ -75,28 +76,32 @@ export const TimeLine = () => {
   const PastPosts: React.FC<{ display: number }> = ({ display }) => {
     // displayが1の時は自分の投稿のみ表示
     if (display === 1) {
-      return pastPostsData
+      return (
+        pastPostsData
+          .slice()
+          // .reverse()
+          .filter((postData) => postData.username === userName)
+          .map((postData) => (
+            <PostItem
+              name={postData.username}
+              content={postData.message}
+              date={postData.timestamp}
+            />
+          ))
+      );
+    }
+    return (
+      pastPostsData
         .slice()
         // .reverse()
-        .filter((postData) => postData.username === userName)
         .map((postData) => (
           <PostItem
             name={postData.username}
             content={postData.message}
             date={postData.timestamp}
           />
-        ));
-    }
-    return pastPostsData
-      .slice()
-      // .reverse()
-      .map((postData) => (
-        <PostItem
-          name={postData.username}
-          content={postData.message}
-          date={postData.timestamp}
-        />
-      ));
+        ))
+    );
   };
 
   return (

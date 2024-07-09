@@ -9,7 +9,6 @@
 
 .topText {
   font-size: 24px;
-  color: black;
   font-weight: bold;
 }
 
@@ -28,9 +27,9 @@
 
 .bottomArea:hover {
   cursor: pointer;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
 }
 
 .bottomText {
-  color: #1D9BF0;
+  color: #1d9bf0;
 }

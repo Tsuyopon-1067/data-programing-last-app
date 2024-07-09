@@ -1,10 +1,9 @@
 import { Button, TextField } from "@mui/material";
-import { KeyboardEvent, useState } from "react";
+import React, { KeyboardEvent, useState } from "react";
 import { userNameToColor } from "../../lib/userNameToColor";
+import { CharacterCounter } from "../atom/CharacterCounter";
 import { useDarkTheme } from "../templetes/DarkThemeProvider";
 import styles from "./PostForm.module.css";
-import React from "react";
-import { CharacterCounter } from "../atom/CharacterCounter";
 
 type PostFormProps = {
   handleSend: (cointent: string) => void;
@@ -14,7 +13,7 @@ type PostFormProps = {
 export const PostForm = ({ userName, handleSend }: PostFormProps) => {
   const [content, setContent] = useState<string>("");
   const isEnablePost = () => content !== "" && content.length <= 140;
-  const { isDarkMode } = useDarkTheme();
+  const { isDarkMode, fontColor, borderColor } = useDarkTheme();
   const sendPost = (content: string) => {
     if (isEnablePost()) {
       handleSend(content);
@@ -30,7 +29,13 @@ export const PostForm = ({ userName, handleSend }: PostFormProps) => {
   };
 
   return (
-    <div className={styles.main}>
+    <div
+      className={styles.main}
+      style={{
+        borderColor: borderColor,
+        color: fontColor,
+      }}
+    >
       <div
         className={styles.userIcon}
         style={{ backgroundColor: userNameToColor(userName) }}
@@ -58,7 +63,7 @@ export const PostForm = ({ userName, handleSend }: PostFormProps) => {
           sx={{
             label: { color: isDarkMode ? "#71767B" : "#536471" },
             div: {
-              textarea: { color: isDarkMode ? "#E7E9EA" : "#0F1419" },
+              textarea: { color: fontColor },
             },
           }}
         />

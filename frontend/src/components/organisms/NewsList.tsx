@@ -2,19 +2,21 @@ import { Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import { News } from "../../types/news";
 import NewsItem from "../molecules/NewsItem";
+import { useDarkTheme } from "../templetes/DarkThemeProvider";
 import styles from "./NewsList.module.css";
 
 export const NewsList = () => {
+  const { isDarkMode } = useDarkTheme();
   const [newsList, setNewsList] = useState<News[]>([]);
   useEffect(() => {
-    fetch('./fetch/news')
-      .then(response => {
+    fetch("./fetch/news")
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setNewsList(data);
       });
   }, []);
@@ -31,7 +33,7 @@ export const NewsList = () => {
         />
       );
     });
-  }
+  };
 
   return (
     <Stack
@@ -39,12 +41,18 @@ export const NewsList = () => {
       spacing={0}
       padding={"6px"}
       sx={{
-        border: "solid #EFF3F4 1px",
+        border: "solid 1px",
         borderRadius: "20px",
+        borderColor: isDarkMode ? "#2F3336" : "#e1e8ed",
       }}
     >
       <div className={styles.topArea}>
-        <span className={styles.topText}>いまどうなってる？</span>
+        <span
+          className={styles.topText}
+          style={{ color: isDarkMode ? "#E7E9EA" : "#0F1419" }}
+        >
+          いまどうなってる？
+        </span>
       </div>
       <NewsItems />
       <a className={styles.a} href="https://news.yahoo.co.jp/">
@@ -54,4 +62,4 @@ export const NewsList = () => {
       </a>
     </Stack>
   );
-}
+};
