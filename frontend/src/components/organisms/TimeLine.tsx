@@ -7,7 +7,6 @@ import { SendMessageType } from "../../types/sendMessage";
 import { PostForm } from "../molecules/PostForm";
 import { PostItem } from "../molecules/PostItem";
 import { useDarkTheme } from "../templetes/DarkThemeProvider";
-import styles from "./TimeLine.module.css";
 
 export const TimeLine = () => {
   const { tabFontColor, selectedTabFontColor } = useDarkTheme();
@@ -137,9 +136,7 @@ export const TimeLine = () => {
         </Tabs>
       </Box>
       <PostForm userName={userName} handleSend={handleSend} />
-      <div className={styles.otherPost}>
-        <PastPosts display={displayedPost} />
-      </div>
+      <PastPosts display={displayedPost} />
     </Stack>
   );
 };
