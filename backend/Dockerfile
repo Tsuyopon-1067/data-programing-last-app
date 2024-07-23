@@ -1,18 +1,3 @@
-# --- フロントエンドのビルドステージ ---
-FROM node:latest as frontend
-
-# 作業ディレクトリの設定
-WORKDIR /app
-
-# パッケージファイルをコピー
-COPY frontend/package*.json ./
-
-RUN npm install
-
-COPY ./frontend .
-
-RUN npm run build
-
 # --- バックエンドのビルドステージ ---
 
 # 使用するベースイメージ
@@ -22,7 +7,7 @@ FROM golang:1.22.3 as builder
 WORKDIR /app
 
 # ソースコードをコピー
-COPY ./backend .
+COPY . .
 
 # フロントエンドのビルド結果をコピー
 COPY --from=frontend /app/dist ./public
