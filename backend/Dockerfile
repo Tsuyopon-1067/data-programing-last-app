@@ -9,9 +9,6 @@ WORKDIR /app
 # ソースコードをコピー
 COPY . .
 
-# フロントエンドのビルド結果をコピー
-COPY --from=frontend /app/dist ./public
-
 # 依存関係をインストール
 RUN go mod download
 
