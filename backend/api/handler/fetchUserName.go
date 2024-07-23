@@ -8,7 +8,8 @@ import (
 )
 
 func HandleFetchUsername(c echo.Context) error {
-	userName := service.GenerateUserName()
+	userIP := c.Request().RemoteAddr
+	userName := service.GenerateUserName(userIP)
 	return c.JSON(http.StatusOK, map[string]string{
 		"username": userName,
 	})
