@@ -1,3 +1,5 @@
+# --- バックエンドのビルドステージ ---
+
 # 使用するベースイメージ
 FROM golang:1.22.3 as builder
 
@@ -22,8 +24,18 @@ WORKDIR /root
 # ビルドした実行ファイルとスクリプトをコピー
 COPY --from=builder /app/server .
 
+# public ディレクトリの内容をコピー
+COPY --from=builder /app/public ./public
+
 # ポートを公開
 EXPOSE 8080
+
+# タイムゾーンの適用
+RUN apk --update add tzdata && \
+    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+    apk del tzdata && \
+    rm -rf /var/cache/apk/*
+
 
 # アプリケーションの実行
 CMD ["./server"]

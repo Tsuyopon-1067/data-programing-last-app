@@ -2,7 +2,7 @@ services:
   app:
     container_name: golang
     build:
-      context: .
+      context: backend
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
